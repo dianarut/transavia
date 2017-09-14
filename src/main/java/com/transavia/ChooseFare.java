@@ -32,10 +32,9 @@ public class ChooseFare {
 	
 	public ChooseFare(WebDriver driver) {
 		this.driver = driver;
-		this.wait = new WebDriverWait(this.driver, 100);
+		this.wait = new WebDriverWait(this.driver, 30);
 		// Провекрка того факта, что мы на верной странице.
-		if ((!driver.getTitle().equals("Book a flight"))
-				|| !driver.getCurrentUrl().equals("https://www.transavia.com/en-UK/book-a-flight/choose-a-fare/select/")) {
+		if (!driver.getCurrentUrl().equals("https://www.transavia.com/en-UK/book-a-flight/choose-a-fare/select/")) {
 			throw new IllegalStateException("Wrong site page!");
 		}
 	}
