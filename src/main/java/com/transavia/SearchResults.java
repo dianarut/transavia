@@ -89,6 +89,9 @@ public class SearchResults {
 	@FindBy (xpath = ".//*[@id='top']/div/div/div[4]/section/section/div/div[1]/div[2]/div/div[3]/div/form/div/button/div[3]/div[1]")
 	private WebElement inPrice;
 	
+	@FindBy (xpath = ".//*[@id='top']/form/div[1]/div/footer/div/div/section/div/div/div[2]/div/div/div[2]")
+	private WebElement totalPrice;
+	
 	public SearchResults(WebDriver driver) {
 		this.driver = driver;
 		this.wait = new WebDriverWait(this.driver, 200);
@@ -271,6 +274,7 @@ public class SearchResults {
 		return this;
 	}
 	
+	// Выделяем первый рейс
 	public SearchResults selectOutboundAvailableDate(){
 		wait.until(ExpectedConditions.visibilityOf(outboundAvailableDate));
 		outboundAvailableDate.click();
@@ -278,35 +282,45 @@ public class SearchResults {
 		return this;
 	}
 	
-	public void getOutPrice(){
-//		wait.until(ExpectedConditions.visibilityOf(outboundAvailableDate));		
+	// Получаем стоимость первого рейса
+	public double getOutPrice(){
+		wait.until(ExpectedConditions.visibilityOf(outboundAvailableDate));		
 		String price = outPrice.getText();
-//		return Double.parseDouble(luggPrice.replace("+ € ", ""));
-		System.out.println(price);
+		return Double.parseDouble(price.replace("€ ", ""));
 	}
 	
+	// Выделяем второй рейс
 	public SearchResults selectInboundAvailableDate(){
 		wait.until(ExpectedConditions.visibilityOf(inboundAvailableDate));
 		inboundAvailableDate.click();
 		return this;
 	}
 	
-	public void getInPrice(){
-//		wait.until(ExpectedConditions.visibilityOf(outboundAvailableDate));		
+	//Получаем стоимоть второго рейса
+	public double getInPrice(){
+		wait.until(ExpectedConditions.visibilityOf(outboundAvailableDate));		
 		String price = inPrice.getText();
-//		return Double.parseDouble(luggPrice.replace("+ € ", ""));
-		System.out.println(price);
+		return Double.parseDouble(price.replace("€ ", ""));
 	}
 	
+	// Выбираем первый рейс
 	public SearchResults clickSelectOutbound(){
 		wait.until(ExpectedConditions.visibilityOf(selectOutboundButton));
 		selectOutboundButton.click();
 		return this;
 	}
 	
+	// Выбираем второй рейс
 	public SearchResults clickSelectInbound(){
 		wait.until(ExpectedConditions.visibilityOf(selectInboundButton));
 		selectInboundButton.click();
 		return this;
+	}
+	
+	// Получаем итоговую стоимось поездки
+	public double getTotalPrice(){
+		wait.until(ExpectedConditions.visibilityOf(outboundAvailableDate));	
+		String price = totalPrice.getText();
+		return Double.parseDouble(price.replace("€ ", ""));
 	}
 }

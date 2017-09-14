@@ -64,7 +64,7 @@ public class Test_Id_9 {
 		
 		SearchResults page2 = PageFactory.initElements(driver, SearchResults.class);
 		try {
-			Thread.sleep(200);
+			Thread.sleep(4000);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
@@ -90,37 +90,59 @@ public class Test_Id_9 {
 		
 		// 5 Кликаем Search
 		page2.clickSearch();
-		try {
-			Thread.sleep(6000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		// 6 Выбираем рейс
-		page2.selectOutboundAvailableDate();
 		
-
-		
-		// 6 Кликаем селект
-		page2.clickSelectOutbound();
-				page2.getOutPrice();
 		try {
 			Thread.sleep(4000);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		// 7 Выбираем рейс
-		page2.selectInboundAvailableDate();
 		
-
+		// 6 Выбираем рейс
+		page2.selectOutboundAvailableDate();
 		
-		// 7 Кликаем селект
-		page2.clickSelectInbound();
-				page2.getInPrice();
 		try {
-			Thread.sleep(6000);
+			Thread.sleep(2000);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
 		
+		// 6 Сохраняем стоимость первой поездки
+		double outPrice = page2.getOutPrice();
+		
+		// 6 Кликаем селект
+		page2.clickSelectOutbound();
+
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+				
+		// 7 Выбираем рейс
+		page2.selectInboundAvailableDate();
+		
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
+		// 7 Сохраняем стоимость второй поездки
+		double inPrice = page2.getInPrice();
+		
+		// 7 Кликаем селект
+		page2.clickSelectInbound();
+		
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
+		// Сохраняем итоговую стоимость поездки
+		double totalPrice = page2.getTotalPrice();
+		
+		// Проверяем итоговую стоимость
+		Assert.assertTrue((outPrice+inPrice==totalPrice), "The total price is wrong!");
 	}
 }
