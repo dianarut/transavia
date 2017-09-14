@@ -90,7 +90,13 @@ public class Test_Id_2 {
 		page1.clickSearch();
 		
 		SearchResults page2 = PageFactory.initElements(driver, SearchResults.class);
-
+		
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
 		//5 Ищем заголовок Outbound flight
 		verificationErrors.append(page2.getErrorOnTextAbsence("Outbound flight"));
 		
@@ -101,23 +107,41 @@ public class Test_Id_2 {
 		//5 Кликаем первую кнопку select в секции OutboundFlight
 		page2.clickOutboundFlightSelect();
 		
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
 		//6 Ищем заголовок Inbound flight
 		verificationErrors.append(page2.getErrorOnTextAbsence("Inbound flight"));
 
 		//6 Кликаем первую кнопку select в секции InboundFlight		
 		page2.clickInboundFlightSelect();
 		
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
 		//Кликаем Next
 		page2.clickNext();
 		
 		ChooseFare page3 = PageFactory.initElements(driver, ChooseFare.class);
-		
+				
 		verificationErrors.append(page3.getErrorOnTextAbsence("Plus"));
 		
 		// Запоминаем цену багажа
 		double luggagePrice = page3.getLuggagePrice();
-
+				
 		page3.clickSelectPlus();
+		
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 		
 		// Запоминам итог
 		double totalPrice = page3.getTotalPrice();
