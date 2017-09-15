@@ -10,7 +10,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class WhereDoYouWantToGo extends Base {
+public class WhereDoYouWantToGo {
 
 	private WebDriverWait wait;
 	private final WebDriver driver;
@@ -66,8 +66,14 @@ public class WhereDoYouWantToGo extends Base {
 	@FindBy (xpath = ".//*[@id='desktop']/section/div/div/button")
 	private WebElement searchButton;
 	
-	@FindBy (xpath = ".//*[@id='desktop']/section/div[3]/ul/li[2]/a")
+	@FindBy (xpath = "html/body/header/nav/div[1]/div[1]/ul/li[3]/a")
 	private WebElement AddMultipleDestinations;
+	
+	@FindBy (xpath ="html/body/header/nav/div[1]/div[1]/ul/li[3]/a")
+	private WebElement manageYourBooking;
+	
+	@FindBy (xpath =".//*[@id='horizontal-sub-navigation-manageyourbooking']/div/div[2]/div/div[1]/div/ul/li[2]/a/div/span[2]")
+	private WebElement  viewYourBooking;
 	
 	public WhereDoYouWantToGo(WebDriver driver) {
 		this.driver = driver;
@@ -250,6 +256,18 @@ public class WhereDoYouWantToGo extends Base {
 	
 	public WhereDoYouWantToGo clickAddMultipleDestinations(){
 		AddMultipleDestinations.click();
+		return this;
+	}
+	
+	public WhereDoYouWantToGo clickManageYourBooking(){
+		wait.until(ExpectedConditions.visibilityOf(manageYourBooking));
+		manageYourBooking.click();
+		return this;
+	}
+	
+	public WhereDoYouWantToGo clickViewYourBooking(){
+		wait.until(ExpectedConditions.visibilityOf(viewYourBooking));
+		viewYourBooking.click();
 		return this;
 	}
 }
