@@ -1,17 +1,12 @@
 package com.transavia;
 
-import java.io.IOException;
-
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class Test_Id_8 {
+public class Test_Id_8 extends BaseTest{
 //	1.1 open transavia.com
 //	1.2 click field "From"
 //	1.2.1 input "Dubai" into field
@@ -19,26 +14,15 @@ public class Test_Id_8 {
 //	1.3.1 input " Agadir,Morocco" into field
 //	1.4 click button "Search"
 //	1.5 get error message
-	String base_url = "https://www.transavia.com";
-	StringBuffer verificationErrors = new StringBuffer();
-	FirefoxProfile profile = new FirefoxProfile();
-	WebDriver driver = null;
-	
 
 	@BeforeClass
 	public void beforeClass() throws Exception {
-		System.setProperty("webdriver.gecko.driver", "C:/Program Files/geckodriver-v0.18.0-win64/geckodriver.exe");
-		profile.setPreference("browser.startup.homepage", "about:blank");
-		driver = new FirefoxDriver();
+		super.beforeClass();
 	}
 	
 	@AfterClass
 	public void afterClass() {
-		try { Runtime.getRuntime().exec("taskkill /f /IM firefox.exe"); } catch (IOException e) { e.printStackTrace(); }
-		String verificationErrorString = verificationErrors.toString();
-		if (!"".equals(verificationErrorString)) {
-			Assert.fail(verificationErrorString);
-		}
+		super.afterClass();
 	}
 	
 	@Test

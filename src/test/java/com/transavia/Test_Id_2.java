@@ -1,17 +1,12 @@
 package com.transavia;
 
-import java.io.IOException;
-
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class Test_Id_2 {
+public class Test_Id_2   extends BaseTest{
 	
 //	1.1 click field "From"  
 //	1.1.1 input "London"                       
@@ -32,25 +27,14 @@ public class Test_Id_2 {
 //	1.8.1 click button " Select"
 //	1.9 get total price
 	
-	String base_url = "https://www.transavia.com";
-	StringBuffer verificationErrors = new StringBuffer();
-	FirefoxProfile profile = new FirefoxProfile();
-	WebDriver driver = null;
-	
 	@BeforeClass
 	public void beforeClass() throws Exception {
-		System.setProperty("webdriver.gecko.driver", "C:/Program Files/geckodriver-v0.18.0-win64/geckodriver.exe");
-		profile.setPreference("browser.startup.homepage", "about:blank");
-		driver = new FirefoxDriver();
+		super.beforeClass();
 	}
 	
 	@AfterClass
 	public void afterClass() {
-		try { Runtime.getRuntime().exec("taskkill /f /IM firefox.exe"); } catch (IOException e) { e.printStackTrace(); }
-		String verificationErrorString = verificationErrors.toString();
-		if (!"".equals(verificationErrorString)) {
-			Assert.fail(verificationErrorString);
-		}
+		super.afterClass();
 	}
 	
 	@Test
@@ -91,14 +75,8 @@ public class Test_Id_2 {
 		
 		SearchResults page2 = PageFactory.initElements(driver, SearchResults.class);
 		
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		
 		//5 Ищем заголовок Outbound flight
-		verificationErrors.append(page2.getErrorOnTextAbsence("Outbound flight"));
+		page2.findOutboundSection();
 		
 		//Запоминаем цены перелетов
 		double toPrice = page2.getToPrice();
@@ -106,16 +84,16 @@ public class Test_Id_2 {
 		
 		//5 Кликаем первую кнопку select в секции OutboundFlight
 		page2.clickOutboundFlightSelect();
-		
+			
+		//6 Ищем заголовок Inbound flight
+		page2.findInboundSection();
+
 		try {
 			Thread.sleep(3000);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
-		}
+		} 
 		
-		//6 Ищем заголовок Inbound flight
-		verificationErrors.append(page2.getErrorOnTextAbsence("Inbound flight"));
-
 		//6 Кликаем первую кнопку select в секции InboundFlight		
 		page2.clickInboundFlightSelect();
 		
@@ -137,15 +115,8 @@ public class Test_Id_2 {
 				
 		page3.clickSelectPlus();
 		
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		
 		// Запоминам итог
 		double totalPrice = page3.getTotalPrice();
-	
 		// Проверяем, правильно ли подсчитан итог
 		Assert.assertTrue((((toPrice+fromPrice)*3)+(luggagePrice*3)==totalPrice),"The total price is wrong");
 	}

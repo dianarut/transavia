@@ -3,11 +3,10 @@ package com.transavia;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
-public class AccountLogon {
-	private WebDriverWait wait;
-	private final WebDriver driver;
+public class AccountLogon extends BasePage{
+
 	
 	@FindBy (id = "retrieveBookingByLastname_RecordLocator")
 	private WebElement bookingNumber;
@@ -25,9 +24,8 @@ public class AccountLogon {
 	private WebElement viewBooking;
 	
 	public AccountLogon (WebDriver driver) {
-		this.driver = driver;
-		this.wait = new WebDriverWait(this.driver, 60);
 
+		super(driver);
 		if ((!driver.getTitle().equals("Log in"))
 				|| (!driver.getCurrentUrl().equals("https://www.transavia.com/en-UK/my-transavia/account/logon/"))) {
 			throw new IllegalStateException("Wrong site page!");
@@ -76,6 +74,7 @@ public class AccountLogon {
 	}
 	
 	public AccountLogon clickViewBooking(){
+		wait.until(ExpectedConditions.visibilityOf(viewBooking));
 		viewBooking.click();
 		return this;
 	}

@@ -3,11 +3,9 @@ package com.transavia;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
-public class BookingDetails {
-	private WebDriverWait wait;
-	private final WebDriver driver;
+public class BookingDetails extends BasePage{
 	
 	@FindBy (xpath = ".//*[@id='top']/div/div[5]/div/div/div/section/div[5]/div/div[2]/div/div/div")
 	private WebElement total;
@@ -16,8 +14,7 @@ public class BookingDetails {
 	private WebElement paymentAmount;
 	
 	public BookingDetails (WebDriver driver) {
-		this.driver = driver;
-		this.wait = new WebDriverWait(this.driver, 60);
+		super(driver);
 
 		if ((!driver.getTitle().equals("Booking details"))
 				|| (!driver.getCurrentUrl().equals("https://www.transavia.com/en-UK/my-transavia/booking/booking-details/"))) {
@@ -26,11 +23,13 @@ public class BookingDetails {
 	}
 	
 	public double getTotal(){
+		wait.until(ExpectedConditions.visibilityOf(total));
 		String price = total.getText();
 		return Double.parseDouble(price.replace("€ ", ""));
 	}
 	
 	public double getPaymentAmount(){
+		wait.until(ExpectedConditions.visibilityOf(paymentAmount));
 		String price = paymentAmount.getText();
 		return Double.parseDouble(price.replace("€ ", ""));
 	}

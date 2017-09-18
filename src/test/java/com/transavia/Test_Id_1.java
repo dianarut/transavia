@@ -1,17 +1,12 @@
 package com.transavia;
 
-import java.io.IOException;
-
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class Test_Id_1 {
+public class Test_Id_1  extends BaseTest{
 	// 1. Появляется окно выбора маршрута "Where do you want to go?"
 	// 2. Появляется выпадающий список с названиями доступных мест для перелета в поле "FROM"
 	// 3. Появляется выпадающий список с названием доступных мест в поле "TO"
@@ -19,26 +14,15 @@ public class Test_Id_1 {
 	// 5. Перевести checkbox "Where do you want to go?" в состоянии unchecked
 	// 6. Появляктся дополнительное поле для выбора количества пассажиров в поле "Who will be travelling?"
 	
-	String base_url = "https://www.transavia.com";
-	StringBuffer verificationErrors = new StringBuffer();
-	FirefoxProfile profile = new FirefoxProfile();
-	WebDriver driver = null;
-	
-
 	@BeforeClass
 	public void beforeClass() throws Exception {
-		System.setProperty("webdriver.gecko.driver", "C:/Program Files/geckodriver-v0.18.0-win64/geckodriver.exe");
-		profile.setPreference("browser.startup.homepage", "about:blank");
-		driver = new FirefoxDriver();
+		super.beforeClass();
+		
 	}
 	
 	@AfterClass
 	public void afterClass() {
-		try { Runtime.getRuntime().exec("taskkill /f /IM firefox.exe"); } catch (IOException e) { e.printStackTrace(); }
-		String verificationErrorString = verificationErrors.toString();
-		if (!"".equals(verificationErrorString)) {
-			Assert.fail(verificationErrorString);
-		}
+		super.afterClass();
 	}
 	
 	@Test

@@ -4,19 +4,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class ChooseFare {
-	private WebDriverWait wait;
-	private final WebDriver driver;
-
-	public WebDriverWait getWait() {
-		return wait;
-	}
-
-	public WebDriver getDriver() {
-		return driver;
-	}
+public class ChooseFare extends BasePage{
 	
 	@FindBy (xpath = ".//*[@id='top']/div[1]/div[1]/div/div/div[2]/div/div[2]/table/thead/tr/th[3]")
 	private WebElement plusFare;
@@ -31,8 +20,7 @@ public class ChooseFare {
 	private WebElement totalPrice;
 	
 	public ChooseFare(WebDriver driver) {
-		this.driver = driver;
-		this.wait = new WebDriverWait(this.driver, 30);
+		super(driver);
 		// Провекрка того факта, что мы на верной странице.
 		if (!driver.getCurrentUrl().equals("https://www.transavia.com/en-UK/book-a-flight/choose-a-fare/select/")) {
 			throw new IllegalStateException("Wrong site page!");
@@ -57,7 +45,7 @@ public class ChooseFare {
 	public double getLuggagePrice(){
 		wait.until(ExpectedConditions.visibilityOf(luggagePrice));		
 		String luggPrice = luggagePrice.getText();
-		return Double.parseDouble(luggPrice.replace("+ € ", ""));		
+		return Double.parseDouble(luggPrice.replace("+ € ", "").replace(",", ""));		
 	}
 
 	// Выбираем тип поездки Plus
@@ -70,7 +58,7 @@ public class ChooseFare {
 	public double getTotalPrice(){
 		wait.until(ExpectedConditions.visibilityOf(totalPrice));		
 		String sTotalPrice = totalPrice.getText();
-		return Double.parseDouble(sTotalPrice.replace("€ ", ""));		
+		return Double.parseDouble(sTotalPrice.replace(",", "").replace("€ ", ""));		
 	}
 	
 }

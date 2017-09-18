@@ -1,17 +1,12 @@
 package com.transavia;
 
-import java.io.IOException;
-
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class Test_Id_9 {
+public class Test_Id_9 extends BaseTest{
 	
 //	1. open transavia.com
 //	2. click Add multiple destinations
@@ -28,29 +23,18 @@ public class Test_Id_9 {
 //	7. click select button next to 10:20 inbound flight
 //	8. get Total amount 
 	
-	String base_url = "https://www.transavia.com";
-	StringBuffer verificationErrors = new StringBuffer();
-	FirefoxProfile profile = new FirefoxProfile();
-	WebDriver driver = null;
-	
 	@BeforeClass
 	public void beforeClass() throws Exception {
-		System.setProperty("webdriver.gecko.driver", "C:/Program Files/geckodriver-v0.18.0-win64/geckodriver.exe");
-		profile.setPreference("browser.startup.homepage", "about:blank");
-		driver = new FirefoxDriver();
+		super.beforeClass();
 	}
 	
 	@AfterClass
 	public void afterClass() {
-		try { Runtime.getRuntime().exec("taskkill /f /IM firefox.exe"); } catch (IOException e) { e.printStackTrace(); }
-		String verificationErrorString = verificationErrors.toString();
-		if (!"".equals(verificationErrorString)) {
-			Assert.fail(verificationErrorString);
-		}
+		super.afterClass();
 	}
 	
 	@Test
-	public void testId2() {
+	public void testId9() {
 		String outFrom = "Bologna, Italy";
 		String outTo = "Eindhoven, Netherlands";
 		String inFrom = "Amsterdam (Schiphol), Netherlands";
@@ -109,15 +93,15 @@ public class Test_Id_9 {
 		// 6 Сохраняем стоимость первой поездки
 		double outPrice = page2.getOutPrice();
 		
-		// 6 Кликаем селект
-		page2.clickSelectOutbound();
+
 
 		try {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-				
+				// 6 Кликаем селект
+		page2.clickSelectOutbound();		
 		// 7 Выбираем рейс
 		page2.selectInboundAvailableDate();
 		
@@ -144,5 +128,9 @@ public class Test_Id_9 {
 		
 		// Проверяем итоговую стоимость
 		Assert.assertTrue((outPrice+inPrice==totalPrice), "The total price is wrong!");
+	}
+
+	public static void main(String[] args) {
+				System.out.println("прошел2");
 	}
 }

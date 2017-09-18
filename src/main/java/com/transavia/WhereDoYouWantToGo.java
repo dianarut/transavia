@@ -8,12 +8,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class WhereDoYouWantToGo {
-
-	private WebDriverWait wait;
-	private final WebDriver driver;
+public class WhereDoYouWantToGo extends BasePage{
 	
 	@FindBy (id = "desktop")
 	private WebElement sectionWherDoYouWantToGo;
@@ -66,7 +62,7 @@ public class WhereDoYouWantToGo {
 	@FindBy (xpath = ".//*[@id='desktop']/section/div/div/button")
 	private WebElement searchButton;
 	
-	@FindBy (xpath = "html/body/header/nav/div[1]/div[1]/ul/li[3]/a")
+	@FindBy (xpath = ".//*[@id='desktop']/section/div[3]/ul/li[2]/a")
 	private WebElement AddMultipleDestinations;
 	
 	@FindBy (xpath ="html/body/header/nav/div[1]/div[1]/ul/li[3]/a")
@@ -75,10 +71,9 @@ public class WhereDoYouWantToGo {
 	@FindBy (xpath =".//*[@id='horizontal-sub-navigation-manageyourbooking']/div/div[2]/div/div[1]/div/ul/li[2]/a/div/span[2]")
 	private WebElement  viewYourBooking;
 	
+
 	public WhereDoYouWantToGo(WebDriver driver) {
-		this.driver = driver;
-		this.wait = new WebDriverWait(this.driver, 60);
-		// Verifying that we have rigth page
+		super(driver);
 		if ((!driver.getTitle().equals("Transavia is the airline of choice for affordable flights!"))
 				|| (!driver.getCurrentUrl().equals("https://www.transavia.com/en-UK/home/"))) {
 			throw new IllegalStateException("Wrong site page!");
@@ -110,6 +105,7 @@ public class WhereDoYouWantToGo {
 	public WhereDoYouWantToGo setFrom(String sfrom) {
 		from.clear();
 		from.sendKeys(sfrom);
+		
 		return this;
 	}
 
@@ -255,6 +251,7 @@ public class WhereDoYouWantToGo {
 	}
 	
 	public WhereDoYouWantToGo clickAddMultipleDestinations(){
+		wait.until(ExpectedConditions.visibilityOf(AddMultipleDestinations));
 		AddMultipleDestinations.click();
 		return this;
 	}
@@ -270,4 +267,6 @@ public class WhereDoYouWantToGo {
 		viewYourBooking.click();
 		return this;
 	}
+	
+	
 }
