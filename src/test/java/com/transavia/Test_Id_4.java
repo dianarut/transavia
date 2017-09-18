@@ -28,8 +28,6 @@ public class Test_Id_4  extends BaseTest{
 	@Test
 	public void TestId4() {
 		
-		driver.get(base_url + "/en-UK/home/");
-		
 		WhereDoYouWantToGo page1 = PageFactory.initElements(driver, WhereDoYouWantToGo.class);
 		
 		try {
@@ -39,7 +37,7 @@ public class Test_Id_4  extends BaseTest{
 		}
 		
 		// Кликаем AddMultipleDestinations
-		page1.clickAddMultipleDestinations();
+		page1.clickManageYourBooking();
 		
 		// Кликаем ViewYourBooking
 		page1.clickViewYourBooking();

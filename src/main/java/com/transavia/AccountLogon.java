@@ -20,11 +20,10 @@ public class AccountLogon extends BasePage{
 	@FindBy (xpath = ".//*[@id='top']/section/div/div")
 	private WebElement justArea;
 	
-	@FindBy (xpath = ".//*[@id='access-booking']/div/div/div[4]/button")
+	@FindBy (xpath = ".//*[@id='access-booking']/div/div/div/button")
 	private WebElement viewBooking;
 	
 	public AccountLogon (WebDriver driver) {
-
 		super(driver);
 		if ((!driver.getTitle().equals("Log in"))
 				|| (!driver.getCurrentUrl().equals("https://www.transavia.com/en-UK/my-transavia/account/logon/"))) {

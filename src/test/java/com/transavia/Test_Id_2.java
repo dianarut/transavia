@@ -40,7 +40,6 @@ public class Test_Id_2   extends BaseTest{
 	@Test
 	public void testId2() {
 		
-		driver.get(base_url + "/en-UK/home/");
 		String from = "Amsterdam (Schiphol), Netherlands";
 		String to = "Paris (Orly South), France";
 		int adults = 2;

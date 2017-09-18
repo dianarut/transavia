@@ -28,7 +28,6 @@ public class Test_Id_8 extends BaseTest{
 	@Test
 	public void TestId8() {
 		
-		driver.get(base_url + "/en-UK/home/");
 		String from = "Dubai, United Arab Emirates";
 		String to = "Agadir, Morocco";
 		
@@ -41,14 +40,14 @@ public class Test_Id_8 extends BaseTest{
 		// т.к. в выпадающем списке отсутствует пункт отправления London
 		// заменяю его на Amsterdam (Schiphol), Netherlands, т.к. считаю, что это не повлияет на конечную цель теста
 		page1.setFromTo(from,to);
-		
+
 		// 2, 3 Проверяем установленные значени To и From
 		Assert.assertEquals(page1.getTo(), to, "Unable to fill 'To' field");
 		Assert.assertEquals(page1.getFrom(),from, "Unable to fill 'From' field");
 		
 		//4 Кликаем Search
 		page1.clickSearch();
-		
+
 		SearchResults page2 = PageFactory.initElements(driver, SearchResults.class);
 
 		//5 Ищем заголовок Outbound flight

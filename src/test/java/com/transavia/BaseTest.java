@@ -23,6 +23,7 @@ public abstract class BaseTest {
 		System.setProperty("webdriver.gecko.driver", "C:/Program Files/geckodriver-v0.18.0-win64/geckodriver.exe");
 		profile.setPreference("browser.startup.homepage", "about:blank");
 		driver = new FirefoxDriver();
+		driver.get(base_url + "/en-UK/home/");
 	}
 	
 	@AfterClass

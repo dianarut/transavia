@@ -67,7 +67,7 @@ public class SearchResults extends BasePage {
 	@FindBy(xpath = ".//*[@id='flights']/div/section/div[3]/div/button[2]")
 	private WebElement searchButton;
 
-	@FindBy(xpath = ".//*[@id='top']/div/div/div[3]/section/section/div/div[1]/section/div[1]/div/div[2]/div/form/ol/li/div[@class='day day-with-availability']")
+	@FindBy(xpath = ".//*[@id='top']/div/div/div[3]/section/section/div/div[1]/section/div[1]/div/div[2]/div/form/ol/li[4]/div[@class='day day-with-availability' or @class='day day-with-availability is-selected']")
 	private WebElement outboundAvailableDate;
 
 	@FindBy(xpath = ".//*[@id='top']/div/div/div[4]/section/section/div/div[1]/section/div[1]/div/div[2]/div/form/ol/li/div[@class='day day-with-availability']")

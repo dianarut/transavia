@@ -10,19 +10,19 @@ public class BookingOverview extends BasePage{
 	@FindBy (xpath = ".//*[@id='top']/div[1]/div/div[1]/div[2]")
 	private WebElement table;
 	
-	@FindBy (xpath = "	.//*[@id='top']/div[1]/div/div[1]/div[2]/div[2]/div/div/div/div[3]/a")
+	@FindBy (xpath = ".//a[@class = 'icon-left-side icon-animation-next'][parent :: div[@class = 'HV-gu--bp0--x3-3 HV-gu--bp0--33p text-align-right']]") //.//*[@id='top']/div[1]/div/div[1]/div[2]/div[2]/div/div/div/div[3]/a
 	private WebElement bookingDetails;
 	
-	@FindBy (xpath = ".//*[@id='top']/div[1]/div/div[1]/div[2]/div[1]/div/div/div[2]/div[1]/div[3]/div/p/em/time")
+	@FindBy (xpath = ".//time[ancestor :: div[@class = 'HV-gu--bp0--x1-3 HV-gu--bp0--y2-4 HV-gu--bp0--40p']]") //.//*[@id='top']/div[1]/div/div[1]/div[2]/div[1]/div/div/div[2]/div[1]/div[3]/div/p/em/time
 	private WebElement departureTime;
 		
-	@FindBy (xpath = ".//*[@id='top']/div[1]/div/div[1]/div[2]/div[1]/div/div/div[2]/div[1]/div[4]/div/p/em/time")
+	@FindBy (xpath = ".//time[ancestor :: div[@class = 'HV-gu--bp0--x2-3 HV-gu--bp0--y2-4 HV-gu--bp0--40p']]") //.//*[@id='top']/div[1]/div/div[1]/div[2]/div[1]/div/div/div[2]/div[1]/div[4]/div/p/em/time
 	private WebElement arrivalTime;
 	
-	@FindBy (xpath = ".//*[@id='top']/div[1]/div/div[1]/div[2]/div[1]/div/div/div[1]/h3/span[1]")
+	@FindBy (xpath = ".//*[contains(@class, 'h5 h5--white no-margin-bottom')]//*[contains(@class, 'nowrap')][1]") //.//*[@id='top']/div[1]/div/div[1]/div[2]/div[1]/div/div/div[1]/h3/span[1]
 	private WebElement fromCity;
 	
-	@FindBy (xpath = ".//*[@id='top']/div[1]/div/div[1]/div[2]/div[1]/div/div/div[1]/h3/span[3]")
+	@FindBy (xpath = ".//*[contains(@class, 'h5 h5--white no-margin-bottom')]//*[contains(@class, 'nowrap')][2]") //.//*[@id='top']/div[1]/div/div[1]/div[2]/div[1]/div/div/div[1]/h3/span[3]
 	private WebElement toCity;
 	
 	public BookingOverview (WebDriver driver) {

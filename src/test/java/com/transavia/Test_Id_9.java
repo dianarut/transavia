@@ -39,7 +39,6 @@ public class Test_Id_9 extends BaseTest{
 		String outTo = "Eindhoven, Netherlands";
 		String inFrom = "Amsterdam (Schiphol), Netherlands";
 		String inTo = "Casablanca, Morocco";
-		driver.get(base_url + "/en-UK/home/");
 		
 		WhereDoYouWantToGo page1 = PageFactory.initElements(driver, WhereDoYouWantToGo.class);
 		
@@ -93,23 +92,11 @@ public class Test_Id_9 extends BaseTest{
 		// 6 Сохраняем стоимость первой поездки
 		double outPrice = page2.getOutPrice();
 		
-
-
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-				// 6 Кликаем селект
-		page2.clickSelectOutbound();		
+		// 6 Кликаем селект
+		page2.clickSelectOutbound();	
+		
 		// 7 Выбираем рейс
 		page2.selectInboundAvailableDate();
-		
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
 		
 		// 7 Сохраняем стоимость второй поездки
 		double inPrice = page2.getInPrice();
@@ -125,12 +112,10 @@ public class Test_Id_9 extends BaseTest{
 		
 		// Сохраняем итоговую стоимость поездки
 		double totalPrice = page2.getTotalPrice();
-		
+		System.out.println(outPrice+inPrice);
+		System.out.println(totalPrice);
 		// Проверяем итоговую стоимость
 		Assert.assertTrue((outPrice+inPrice==totalPrice), "The total price is wrong!");
 	}
 
-	public static void main(String[] args) {
-				System.out.println("прошел2");
-	}
 }

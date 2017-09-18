@@ -32,8 +32,6 @@ public class Test_Id_3 extends BaseTest{
 		String fromCity = "Pisa";
 		String toCity = "Amsterdam (Schiphol)";
 		
-		driver.get(base_url + "/en-UK/home/");
-		
 		WhereDoYouWantToGo page1 = PageFactory.initElements(driver, WhereDoYouWantToGo.class);
 		
 		try {
@@ -42,14 +40,14 @@ public class Test_Id_3 extends BaseTest{
 			e.printStackTrace();
 		}
 		
-		// Кликаем AddMultipleDestinations
-		page1.clickAddMultipleDestinations();
+		// Кликаем ManageYourBooking
+		page1.clickManageYourBooking();
 		
 		// Кликаем ViewYourBooking
 		page1.clickViewYourBooking();
 		
 		AccountLogon page2 = PageFactory.initElements(driver, AccountLogon.class);
-		
+
 		// Устанавливаем значения в поля
 		page2.setNumberNameDate(bookingNumber, lastName, flightDate);
 		

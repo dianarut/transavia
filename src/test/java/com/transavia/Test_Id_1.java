@@ -17,7 +17,6 @@ public class Test_Id_1  extends BaseTest{
 	@BeforeClass
 	public void beforeClass() throws Exception {
 		super.beforeClass();
-		
 	}
 	
 	@AfterClass
@@ -27,7 +26,7 @@ public class Test_Id_1  extends BaseTest{
 	
 	@Test
 	public void TestId1() {
-		driver.get(base_url + "/en-UK/home/");
+		
 		String from = "Edinburgh, United Kingdom";
 		String to = "Paris (Orly South), France";
 		int adults = 3;
@@ -78,16 +77,16 @@ public class Test_Id_1  extends BaseTest{
 		// 6. Устанавливаем необходимое колическо пассажиров
 		page1.setNumberOfPassengers(adults,children,babies);
 		
-		
 		// 6. Проверяем, что установилось заданное количество пассажиров
-		Assert.assertEquals(page1.getNumberOfAduls(), adults);
-		Assert.assertEquals(page1.getNumberOfChildren(), children);
-		Assert.assertEquals(page1.getNumberOfBabies(), babies);
-		
+		Assert.assertEquals(page1.getNumberOfAduls(), adults,"There is wrong number of adults!");
+		Assert.assertEquals(page1.getNumberOfChildren(), children,"There is wrong number of children!");
+		Assert.assertEquals(page1.getNumberOfBabies(), babies,"There is wrong number of babies!");
+
 		page1.clickOnOtherArea();
+
 		// 7. Кликаем Search
 		page1.clickSearch();
-		
+
 		SearchResults page2 = PageFactory.initElements(driver, SearchResults.class);
 		// . Проверяем, есть ли доступный рейс в период от 1 до 7 днейй
 		Assert.assertTrue(page2.searchAvailableFlight(), "No available flight found!");

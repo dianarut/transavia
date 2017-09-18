@@ -20,46 +20,46 @@ public class WhereDoYouWantToGo extends BasePage{
 	@FindBy (id = "routeSelection_ArrivalStation-input")
 	private WebElement to;
 
-	@FindBy (xpath = "//*[@id='desktop']/section/div/div/div[1]/div/div/div/div/div/div")
+	@FindBy (xpath = "//div [@class='autocomplete-results'][preceding-sibling :: input [@id = 'routeSelection_DepartureStation-input']]")
 	private WebElement fromDropDownList;
 	
-	@FindBy (xpath = ".//*[@id='desktop']/section/div/div/div[2]/div/div/div/div/div/div")
+	@FindBy (xpath = "//div [@class='autocomplete-results'][preceding-sibling :: input [@id = 'routeSelection_ArrivalStation-input']]")
 	private WebElement toDropDownListl;
 	
-	@FindBy (xpath = ".//*[@id='top']/div[2]/section")
+	@FindBy (xpath = ".//*[@id='top']/div[2]") //.//*[@id='top']/div[2]/section
 	private WebElement image;
 	
-	@FindBy (xpath = " .//*[@id='desktop']/section/div[2]/div[2]/div/div/div[1]/div/div[1]/span")
+	@FindBy (xpath = "//span [@class='datepicker-trigger icon-font icon-calendar'][preceding-sibling :: input [@id = 'dateSelection_OutboundDate-datepicker']]") // .//*[@id='desktop']/section/div[2]/div[2]/div/div/div[1]/div/div[1]/span
 	private WebElement  calendarIcon;
 
 	@FindBy (id = "dateSelection_OutboundDate-datepicker")
 	private WebElement calendarField;
 	
-	@FindBy (xpath = ".//*[@id='desktop']/section/div/div/div/div/div/div/div/label")
+	@FindBy (xpath = "//label [@class='h6'][preceding-sibling :: input [@id = 'dateSelection_IsReturnFlight']]") //.//*[@id='desktop']/section/div/div/div/div/div/div/div/label
 	private WebElement returnOn;
 	
 	@FindBy (id = "booking-passengers-input")
 	private WebElement numberOfPassengers;
 	
-	@FindBy (xpath = ".//*[@id='desktop']/section/div/div/div/div/div/div/div[1]/div/div/div/div/div/button[2]")
+	@FindBy (xpath = "//button [@class='button button-secondary increase'][preceding-sibling :: div [child :: select [@id = 'booking-adults']]]") //.//*[@id='desktop']/section/div/div/div/div/div/div/div[1]/div/div/div/div/div/button[2]
 	private WebElement plusAdults;
 	
-	@FindBy (xpath = ".//*[@id='desktop']/section/div[2]/div[3]/div/div[2]/div[2]/div[1]/div[2]/div/div/div[2]/div/div/button[2]")
+	@FindBy (xpath = "//button [@class='button button-secondary increase'][preceding-sibling :: div [child :: select [@id = 'booking-children']]]") // .//*[@id='desktop']/section/div[2]/div[3]/div/div[2]/div[2]/div[1]/div[2]/div/div/div[2]/div/div/button[2]
 	private WebElement plusChildren;
 	
-	@FindBy (xpath = ".//*[@id='desktop']/section/div[2]/div[3]/div/div[2]/div[2]/div[1]/div[3]/div/div/div[2]/div/div/button[2]")
+	@FindBy (xpath = "//button [@class='button button-secondary increase'][preceding-sibling :: div [child :: select [@id = 'booking-infants']]]") //.//*[@id='desktop']/section/div[2]/div[3]/div/div[2]/div[2]/div[1]/div[3]/div/div/div[2]/div/div/button[2]")
 	private WebElement plusBabies;
 	
-	@FindBy (xpath = ".//*[@id='desktop']/section/div[2]/div[3]/div/div[2]/div[2]/div[1]/div[1]/div/div/div[2]/div/div/div[2]/input")
+	@FindBy (xpath = "//div [@class='textfield'][preceding-sibling :: div [child :: select [@id = 'booking-adults']]]/input") //.//*[@id='desktop']/section/div[2]/div[3]/div/div[2]/div[2]/div[1]/div[1]/div/div/div[2]/div/div/div[2]/input
 	private WebElement numberAdults;
 	
-	@FindBy (xpath = ".//*[@id='desktop']/section/div/div/div/div/div/div/div[2]/div/div/div/div/div/div/input")
+	@FindBy (xpath = "//div [@class='textfield'][preceding-sibling :: div [child :: select [@id = 'booking-children']]]/input") // .//*[@id='desktop']/section/div/div/div/div/div/div/div[2]/div/div/div/div/div/div/input
 	private WebElement numberChildren;
 	
-	@FindBy (xpath = ".//*[@id='desktop']/section/div/div/div/div/div/div/div[3]/div/div/div/div/div/div/input")
+	@FindBy (xpath = "//div [@class='textfield'][preceding-sibling :: div [child :: select [@id = 'booking-infants']]]/input") //.//*[@id='desktop']/section/div/div/div/div/div/div/div[3]/div/div/div/div/div/div/input
 	private WebElement numberBabies;
 	
-	@FindBy (xpath = ".//*[@id='desktop']/section/div/div/button")
+	@FindBy (xpath = ".//*[@id='desktop']/section/div/div/button") //.//*[@id='desktop']/section/div/div/button
 	private WebElement searchButton;
 	
 	@FindBy (xpath = ".//*[@id='desktop']/section/div[3]/ul/li[2]/a")
@@ -68,10 +68,9 @@ public class WhereDoYouWantToGo extends BasePage{
 	@FindBy (xpath ="html/body/header/nav/div[1]/div[1]/ul/li[3]/a")
 	private WebElement manageYourBooking;
 	
-	@FindBy (xpath =".//*[@id='horizontal-sub-navigation-manageyourbooking']/div/div[2]/div/div[1]/div/ul/li[2]/a/div/span[2]")
+	@FindBy (xpath =".//a[@class = 'sub-navigation_link sub-navigation-level-1_link h5'][descendant :: span[@class = 'stamp icon-font icon-account']]") //.//*[@id='horizontal-sub-navigation-manageyourbooking']/div/div[2]/div/div[1]/div/ul/li[2]/a/div/span[2]
 	private WebElement  viewYourBooking;
 	
-
 	public WhereDoYouWantToGo(WebDriver driver) {
 		super(driver);
 		if ((!driver.getTitle().equals("Transavia is the airline of choice for affordable flights!"))
