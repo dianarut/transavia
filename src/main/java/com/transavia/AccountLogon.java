@@ -46,7 +46,7 @@ public class AccountLogon extends BasePage{
 		return this;
 	}
 	
-	// Устанавливаем значения в поля 
+	// Set values in the fields
 	public AccountLogon setNumberNameDate (String number, String name,String date){
 		setBookingNumber(number);
 		setLastName(name);

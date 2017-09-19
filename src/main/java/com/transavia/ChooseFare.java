@@ -21,18 +21,16 @@ public class ChooseFare extends BasePage{
 	
 	public ChooseFare(WebDriver driver) {
 		super(driver);
-		// Провекрка того факта, что мы на верной странице.
 		if (!driver.getCurrentUrl().equals("https://www.transavia.com/en-UK/book-a-flight/choose-a-fare/select/")) {
 			throw new IllegalStateException("Wrong site page!");
 		}
 	}
-	
-
-	// Поиск строки на странице 	
+		
 	public boolean pageTextContains(String search_string) {
 		return plusFare.getText().contains(search_string);
 	}
-	//Формирование текста ошибки
+	
+	// Create the error messege
 	public String getErrorOnTextAbsence(String search_string) {
 		if (!pageTextContains(search_string)) {
 			return "No '" + search_string + "' is found inside page text!\n";
@@ -41,20 +39,18 @@ public class ChooseFare extends BasePage{
 		}
 	}
 	
-	// Получаем стоимость багажа
 	public double getLuggagePrice(){
 		wait.until(ExpectedConditions.visibilityOf(luggagePrice));		
 		String luggPrice = luggagePrice.getText();
 		return Double.parseDouble(luggPrice.replace("+ € ", "").replace(",", ""));		
 	}
 
-	// Выбираем тип поездки Plus
+	// Click "Select" in section Plus
 	public ChooseFare clickSelectPlus(){
 		selectPlus.click();
 		return this;
 	}
 	
-	// Получаем итоговую цену за перелет
 	public double getTotalPrice(){
 		wait.until(ExpectedConditions.visibilityOf(totalPrice));		
 		String sTotalPrice = totalPrice.getText();

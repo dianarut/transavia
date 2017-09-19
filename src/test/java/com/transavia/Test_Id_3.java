@@ -40,33 +40,33 @@ public class Test_Id_3 extends BaseTest{
 			e.printStackTrace();
 		}
 		
-		// Кликаем ManageYourBooking
+		//2 Click "ManageYourBooking"
 		page1.clickManageYourBooking();
 		
-		// Кликаем ViewYourBooking
+		//3 Click "ViewYourBooking"
 		page1.clickViewYourBooking();
 		
 		AccountLogon page2 = PageFactory.initElements(driver, AccountLogon.class);
 
-		// Устанавливаем значения в поля
+		//4 Set values in fields
 		page2.setNumberNameDate(bookingNumber, lastName, flightDate);
 		
-		// Проверяем установленные значения
+		// 4 Check values in fields
 		Assert.assertEquals(page2.getBookingNumber(), bookingNumber,"Unable to fill 'BookingNumber' field");
 		Assert.assertEquals(page2.getLastName(), lastName,"Unable to fill 'LastName' field");
 		Assert.assertEquals(page2.getFlightDate(), flightDate,"Unable to fill 'FlightDate' field");
 		
 		page2.justClick();
 		
-		// Кликаем ViewBooking
+		// Click "ViewBooking"
 		page2.clickViewBooking();
 		
 		BookingOverview page3 = PageFactory.initElements(driver, BookingOverview.class);
 		
-		// Проверяем наличие формы на странице
+		// Check page
 		page3.checkTable();
 		
-		//Проверяем данные по рейсу
+		//Check information about flight
 		Assert.assertEquals(page3.getDepartureTime(), departureTime,"Departure time is wrong!");
 		Assert.assertEquals(page3.getArrivalTime(), arrivalTime,"Arrival time is wrong!");
 		Assert.assertEquals(page3.getFromCity(), fromCity,"Departure city is wrong!");

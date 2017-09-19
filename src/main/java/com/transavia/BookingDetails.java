@@ -15,7 +15,6 @@ public class BookingDetails extends BasePage{
 	
 	public BookingDetails (WebDriver driver) {
 		super(driver);
-
 		if ((!driver.getTitle().equals("Booking details"))
 				|| (!driver.getCurrentUrl().equals("https://www.transavia.com/en-UK/my-transavia/booking/booking-details/"))) {
 			throw new IllegalStateException("Wrong site page!");

@@ -44,7 +44,6 @@ public class BookingOverview extends BasePage{
 		return this;
 	}
 	
-	// Получаем информацию о рейсе
 	public String getDepartureTime(){
 		wait.until(ExpectedConditions.visibilityOf(departureTime));
 		return departureTime.getText();

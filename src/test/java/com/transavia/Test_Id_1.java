@@ -35,60 +35,59 @@ public class Test_Id_1  extends BaseTest{
 
 		WhereDoYouWantToGo page1 = PageFactory.initElements(driver, WhereDoYouWantToGo.class);
 		
-		//1. Проверка наличия секции "Where do you want to go?" 
+		//1.  Check if "Where do you want to go?" is  available 
 		Assert.assertTrue(page1.isSectionWhereDoYouWantToGoPresent(), "No suitable forms found!");
 		
-		//2. Проверка наличия выпадающего списка у From
+		//2. Check if "From" drop-down list is visible
 		Assert.assertTrue(page1.checkFromDropDownList(from), "No FROM drop-down list found!");
 		
-		//2. Установка значения From
+		//2. Set "From"
 		page1.setFrom(from);
 		
-		//2. Проверка уставки значения From
+		//2. Check "From"
 		Assert.assertEquals(page1.getFrom(),from, "Unable to fill 'From' field");
 		
-		// Чтобы выпадающий список From не заслонял собой поле To, кликаем на на посторонюю область на сайте
 		page1.clickOnOtherArea();
 		
-		//3. Проверка наличия выпадающего списка у To
+		//3. Check if "To" drop-down list is visible
 		Assert.assertTrue(page1.checkToDropDownList(to), "No TO drop-down list found!");
 		
-		//3.  Установка значения To
+		//3.  Set "To"
 		page1.setTo(to);
 		
-		//3. Проверка уставки значения To 
+		//3. Check "To" 
 		Assert.assertEquals(page1.getTo(), to, "Unable to fill 'To' field");
 		
-		// Чтобы выпадающий список To не заслонял собой иконку календаря, кликаем на на посторонюю область на сайте
 		page1.clickOnOtherArea();
 		
-		// 4. Устанавливаем текущую дату в Depart On
+		// 4. Set date in "Depart On"
 		page1.setDepartOnDate();
 		
-		// 4. Проверка, что дата установлена верно в Depart On
+		// 4. Check date in "Depart On"
 		Assert.assertTrue(page1.checkDepartOnDate(), "The Depart On date is wrong!");
 			
-		// 5. Переводим checkbox "Return on" в состоянии unchecked
+		// 5. Click checkbox "Return on" to it'll be unchecked
 		page1.clickReturnOn();
 		
-		// 5. Проверяем, что checkbox "Return on" в состоянии unchecked
+		// 5. Check checkbox "Return on"
 		Assert.assertFalse(page1.checkReturnOn(), "The checkbox Retun On is checked!");
 		
-		// 6. Устанавливаем необходимое колическо пассажиров
+		// 6. Set number of passengers
 		page1.setNumberOfPassengers(adults,children,babies);
 		
-		// 6. Проверяем, что установилось заданное количество пассажиров
+		// 6. Check number of passengers
 		Assert.assertEquals(page1.getNumberOfAduls(), adults,"There is wrong number of adults!");
 		Assert.assertEquals(page1.getNumberOfChildren(), children,"There is wrong number of children!");
 		Assert.assertEquals(page1.getNumberOfBabies(), babies,"There is wrong number of babies!");
 
 		page1.clickOnOtherArea();
 
-		// 7. Кликаем Search
+		// 7. Click "Search"
 		page1.clickSearch();
 
 		SearchResults page2 = PageFactory.initElements(driver, SearchResults.class);
-		// . Проверяем, есть ли доступный рейс в период от 1 до 7 днейй
+		
+		// Check if there is available flight
 		Assert.assertTrue(page2.searchAvailableFlight(), "No available flight found!");
 	}
 }

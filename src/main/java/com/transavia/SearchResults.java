@@ -95,14 +95,13 @@ public class SearchResults extends BasePage {
 	
 	public SearchResults(WebDriver driver) {
 		super(driver);
-		// Verifying that we have rigth page
 		if ((!driver.getTitle().equals("Book a flight"))
 				|| (!driver.getCurrentUrl().equals("https://www.transavia.com/en-UK/book-a-flight/flights/search/"))) {
 			throw new IllegalStateException("Wrong site page!");
 		}
 	}
 
-	// Поиск доступных рейсов в период от 1 до 7 дней
+	// Check if there is available flight
 	public boolean searchAvailableFlight() {
 		wait.until(ExpectedConditions.visibilityOf(rightAttowOut));
 		rightAttowOut.click();
@@ -114,7 +113,7 @@ public class SearchResults extends BasePage {
 		return element.getText().contains(sectionName);
 	}
 	
-	// Формирование текста ошибки!!!
+	// Create the error messege
 	public String getErrorOnTextAbsence(WebElement element, String sectionName) {
 		if (!findSection(element,sectionName)) {
 			return "No '" + sectionName + "' is found inside page text!\n";
@@ -123,57 +122,57 @@ public class SearchResults extends BasePage {
 		}
 	}
 	
-	// Поиск секции OutboundFlight
+	// Search section "Outbound flight"
 	public void findOutboundFlight(){
 		getErrorOnTextAbsence(outboundSection, "Outbound flight");
 	}
 	
-	// Поиск секции InboundFlight
+	// Search section "Inbound flight"
 	public void findInboundFlight(){
 		getErrorOnTextAbsence(inboundSection, "Inbound flight");
 	}
 	
-	// Получем цену перелета туда
+	
 	public double getToPrice() {
 		wait.until(ExpectedConditions.visibilityOf(toPrice));
 		String tPrice = toPrice.getText();
 		return Double.parseDouble(tPrice.replace("€ ", "").replace(",", ""));
 	}
 
-	// Получем цену перелета обратно
+	
 	public double getFromPrice() {
 		wait.until(ExpectedConditions.visibilityOf(fromPrice));
 		String frPrice = fromPrice.getText();
 		return Double.parseDouble(frPrice.replace("€ ", "").replace(",", ""));
 	}
 
-	// Кликаем на первую кнопку селект в секции OutboundFlight
+	// Click "Select" in section "Outbound flight"
 	public SearchResults clickOutboundFlightSelect() {
 		wait.until(ExpectedConditions.visibilityOf(outboundFlightFirstSelect));
 		outboundFlightFirstSelect.click();
 		return this;
 	}
 
-	// Кликаем на первую кнопку селект в секции InboundFlight
+	// Click "Select" in section "Inbound flight"
 	public SearchResults clickInboundFlightSelect() {
 		wait.until(ExpectedConditions.visibilityOf(inboundFlightFirstSelect));
 		inboundFlightFirstSelect.click();
 		return this;
 	}
 
-	// Кликаем Next
+	// Click "Next"
 	public SearchResults clickNext() {
 		wait.until(ExpectedConditions.visibilityOf(nextButton));
 		nextButton.click();
 		return this;
 	}
 
-	// Проверка наличия сообщения об ошибке
+	// Check if error massage is there
 	public boolean errorMessageEquals(String search_string) {
 		return errorMessage.getText().equals(search_string);
 	}
 
-	// Проверяем наличие секции Outbound
+	// Search section "Outbound flight"
 	public boolean findOutboundSection() {
 		wait.until(ExpectedConditions.visibilityOf(outboundSection));	
 		if (outboundSection != null) {
@@ -183,7 +182,7 @@ public class SearchResults extends BasePage {
 		}
 	}
 
-	// Заполнение from.
+
 	public SearchResults setFromOutboundLocator(String from_outbound) {
 		wait.until(ExpectedConditions.visibilityOf(fromOutbound));
 		fromOutbound.clear();
@@ -191,7 +190,7 @@ public class SearchResults extends BasePage {
 		return this;
 	}
 
-	// Заполнение to.
+
 	public SearchResults setToOutboundLocator(String to_outbound) {
 		wait.until(ExpectedConditions.visibilityOf(toOutbound));
 		toOutbound.clear();
@@ -199,33 +198,32 @@ public class SearchResults extends BasePage {
 		return this;
 	}
 
-	// Заполнение всех полей формы.
+	// Set "From" and "To" in section "Outbound"
 	public SearchResults setFieldsFromToOutbound(String from_outbound, String to_outbound) {
 		setFromOutboundLocator(from_outbound);
 		setToOutboundLocator(to_outbound);
 		return this;
 	}
 
-	// Получение значения From Outbound
+
 	public String getFromOutbound() {
 		return fromOutbound.getAttribute("value");
 	}
 
-	// Получение значения To Outbound
+
 	public String getToOutbound() {
 		return toOutbound.getAttribute("value");
 	}
 
-	// Устанавливает текущую дату в OutboundDate
+	// Set current date in "Outbound"
 	public SearchResults setOutboundDate() {
 		calendarIcon.click();
 		calendarField.clear();
 		calendarField.sendKeys(currentDate());
-		;
 		return this;
 	}
 
-	// Создает строку, содержащую дату в формате d.MM.yyyy
+	// Create a string with date d.MM.yyyy
 	public String currentDate() {
 		Date dateNow = new Date(0);
 		SimpleDateFormat dateFormat = new SimpleDateFormat("d.MM.yyyy");
@@ -234,7 +232,7 @@ public class SearchResults extends BasePage {
 		return date;
 	}
 
-	// Проверяет установку даты в OutboundDate
+	// Check date in "OutboundDate"
 	public boolean checkOutboundDate() {
 		return calendarField.getAttribute("value").contains(currentDate());
 	}
@@ -247,7 +245,7 @@ public class SearchResults extends BasePage {
 		}
 	}
 
-	// Заполнение from.
+
 	public SearchResults setFromInboundLocator(String from_inbound) {
 		wait.until(ExpectedConditions.visibilityOf(fromInbound));
 		fromInbound.clear();
@@ -255,7 +253,7 @@ public class SearchResults extends BasePage {
 		return this;
 	}
 
-	// Заполнение to.
+
 	public SearchResults setToInboundLocator(String to_inbound) {
 		wait.until(ExpectedConditions.visibilityOf(toInbound));
 		toInbound.clear();
@@ -263,72 +261,66 @@ public class SearchResults extends BasePage {
 		return this;
 	}
 
-	// Заполнение всех полей формы.
+	// Set "From" and "To"
 	public SearchResults setFieldsFromToInbound(String from_inbound, String to_inbound) {
 		setFromInboundLocator(from_inbound);
 		setToInboundLocator(to_inbound);
 		return this;
 	}
 
-	// Получение значения From Inbound
 	public String getFromInbound() {
 		return fromInbound.getAttribute("value");
 	}
 
-	// Получение значения To Inbound
 	public String getToInbound() {
 		return toInbound.getAttribute("value");
 	}
 
-	// Кликаем Search
 	public SearchResults clickSearch() {
 		searchButton.click();
 		return this;
 	}
 
-	// Выделяем первый рейс
+	// Click on first available flight in Outbound
 	public SearchResults selectOutboundAvailableDate() {
 		wait.until(ExpectedConditions.visibilityOf(outboundAvailableDate));
 		outboundAvailableDate.click();
 		return this;
 	}
 
-	// Получаем стоимость первого рейса
 	public double getOutPrice() {
 		wait.until(ExpectedConditions.visibilityOf(outboundAvailableDate));
 		String price = outPrice.getText();
 		return Double.parseDouble(price.replace("€ ", ""));
 	}
 
-	// Выделяем второй рейс
+	// Click on first available flight in Inbound
 	public SearchResults selectInboundAvailableDate() {
 		wait.until(ExpectedConditions.visibilityOf(inboundAvailableDate));
 		inboundAvailableDate.click();
 		return this;
 	}
 
-	// Получаем стоимоть второго рейса
 	public double getInPrice() {
 		wait.until(ExpectedConditions.visibilityOf(outboundAvailableDate));
 		String price = inPrice.getText();
 		return Double.parseDouble(price.replace("€ ", ""));
 	}
 
-	// Выбираем первый рейс
+	// Select first available flight in Outbound
 	public SearchResults clickSelectOutbound() {
 		wait.until(ExpectedConditions.visibilityOf(selectOutboundButton));
 		selectOutboundButton.click();
 		return this;
 	}
 
-	// Выбираем второй рейс
+	// Select on first available flight in Inbound
 	public SearchResults clickSelectInbound() {
 		wait.until(ExpectedConditions.visibilityOf(selectInboundButton));
 		selectInboundButton.click();
 		return this;
 	}
 
-	// Получаем итоговую стоимось поездки
 	public double getTotalPrice() {
 		wait.until(ExpectedConditions.visibilityOf(outboundAvailableDate));
 		String price = totalPrice.getText();

@@ -79,7 +79,7 @@ public class WhereDoYouWantToGo extends BasePage{
 		}
 	}
 
-	//Проверка наличия секции "Where do you want to go?"
+	//  Check if "Where do you want to go?" is  available 
 	public boolean isSectionWhereDoYouWantToGoPresent() {
 		try {
 			Thread.sleep(2000);
@@ -93,14 +93,14 @@ public class WhereDoYouWantToGo extends BasePage{
 		}
 	}
 	
-	//Проверка наличия выпадающего списка From
+	// Check if "From" drop-down list is visible
 	public boolean checkFromDropDownList(String search_string) {
 		wait.until((ExpectedConditions.visibilityOf (from)));
 		from.click();
 		return fromDropDownList.getAttribute("class").contains("autocomplete-results");
 	}
 	
-	// Заполнение From.
+	// Set "From"
 	public WhereDoYouWantToGo setFrom(String sfrom) {
 		from.clear();
 		from.sendKeys(sfrom);
@@ -108,31 +108,31 @@ public class WhereDoYouWantToGo extends BasePage{
 		return this;
 	}
 
-	// Получение значения From.
+	// Get "From"
 	public String getFrom() {
 		return from.getAttribute("value");
 	}
 	
-	//Проверка наличия выпадающего списка To
+	// Check if "To" drop-down list is visible
 	public boolean checkToDropDownList(String search_string) {
 		wait.until(ExpectedConditions.visibilityOf(to));
 		to.click();
 		return 	toDropDownListl.getAttribute("class").contains("autocomplete-results");
 	}
 	
-	// Заполнение To.
+	// Set "To"
 	public WhereDoYouWantToGo setTo(String sto) {
 		to.clear();
 		to.sendKeys(sto);
 		return this;
 	}
 
-	// Получение значения To.
+	// Get "From"
 	public String getTo() {
 		return to.getAttribute("value");
 	}
 	
-	// Клик на постороннюю область
+	// Just click
 	public WhereDoYouWantToGo clickOnOtherArea(){
 		image.click();
 		try {
@@ -143,7 +143,7 @@ public class WhereDoYouWantToGo extends BasePage{
 		return this;
 	}
 	
-	//заполнение from to
+	//Set "From" and "To" 
 	public void setFromTo(String sfrom,String sto){
 		checkFromDropDownList(sfrom);
 		setFrom(sfrom);
@@ -155,7 +155,7 @@ public class WhereDoYouWantToGo extends BasePage{
 		clickOnOtherArea();
 	}
 	
-	//Создает строку, содержащую дату в формате d.MM.yyyy
+	//Create a string with date d.MM.yyyy
 	public String currentDate(){
 		 Date dateNow = new Date(0);
 		 SimpleDateFormat dateFormat = new SimpleDateFormat("d.MM.yyyy");
@@ -165,7 +165,7 @@ public class WhereDoYouWantToGo extends BasePage{
 	}
 	
 	
-	// Устанавливает текущую дату в в Depart On
+	// Set current date in "Depart On"
 	public WhereDoYouWantToGo setDepartOnDate() {
 		calendarIcon.click();
 		calendarField.clear();
@@ -173,35 +173,35 @@ public class WhereDoYouWantToGo extends BasePage{
 		return this;
 	}
 	
-	// Проверяет установку даты в Depart On
+	// Check current date in "Depart On"
 	public boolean checkDepartOnDate(){
 		return calendarField.getAttribute("value").contains(currentDate());
 	}
 	
-	//Клик по Return On
+	//Click "Return On"
 	public WhereDoYouWantToGo clickReturnOn() {
 		returnOn.click();
 	return this;
 	}
 	
-	//Проверка состояния Return On
+	//Check "Return On"
 	public boolean checkReturnOn(){
 		return returnOn.isSelected();
 	}
 	
-	//Добавляем одного взрослога пассажира
+	//Add adult
 	public WhereDoYouWantToGo plusAdults(){
 		plusAdults.click();
 		return this;
 	}
 	
-	// Добавляем одного ребенка в пассажиры
+	// Add child
 	public WhereDoYouWantToGo plusChildren(){
 		plusChildren.click();
 		return this;
 	}
 	
-	// Добавляем одного младенца в пассажиры
+	// Add baby
 	public WhereDoYouWantToGo plusBabies(){
 		plusBabies.click();
 		return this;
@@ -225,22 +225,22 @@ public class WhereDoYouWantToGo extends BasePage{
 		}
 	}
 	
-	// Получаем количество взрослых пассажиров
+	// Get number of adults
 	public int getNumberOfAduls(){
 		return Integer.parseInt(numberAdults.getAttribute("value"));
 	}
 	
-	//Получаем количество детей
+	// Get number of children
 	public int getNumberOfChildren(){
 		return Integer.parseInt(numberChildren.getAttribute("value"));
 	}
 	
-	// Получаем количество младенцев
+	// Get number of babies
 	public int getNumberOfBabies(){
 		return Integer.parseInt(numberBabies.getAttribute("value"));
 	}
 	
-	// Кликаем Search
+	
 	public WhereDoYouWantToGo clickSearch() {
 		try {
 			searchButton.click();

@@ -36,44 +36,44 @@ public class Test_Id_4  extends BaseTest{
 			e.printStackTrace();
 		}
 		
-		// Кликаем AddMultipleDestinations
+		//2 Click "ManageYourBooking"
 		page1.clickManageYourBooking();
 		
-		// Кликаем ViewYourBooking
+		//3 Click "ViewYourBooking"
 		page1.clickViewYourBooking();
 		
 		AccountLogon page2 = PageFactory.initElements(driver, AccountLogon.class);
 		
-		// Устанавливаем значения в поля
+		//4 Set values in fields
 		page2.setNumberNameDate(bookingNumber, lastName, flightDate);
 		
-		// Проверяем установленные значения
+		// Click "ViewBooking"
 		Assert.assertEquals(page2.getBookingNumber(), bookingNumber,"Unable to fill 'BookingNumber' field");
 		Assert.assertEquals(page2.getLastName(), lastName,"Unable to fill 'LastName' field");
 		Assert.assertEquals(page2.getFlightDate(), flightDate,"Unable to fill 'FlightDate' field");
 		
 		page2.justClick();
 		
-		// Кликаем ViewBooking
+		// Click "ViewBooking"
 		page2.clickViewBooking();
 		
 		BookingOverview page3 = PageFactory.initElements(driver, BookingOverview.class);
 	
-		// Проверяем наличие формы на странице
+		// Check page
 		page3.checkTable();
 		
-		// Кликаем BookingDetails
+		// Click "BookingDetails"
 		page3.clickBookingDetails();
 		
 		BookingDetails page4 = PageFactory.initElements(driver, BookingDetails.class);
 			
-		// Запоминаем стоимость билета
+		// Remember ticket's price
 		Double total = page4.getTotal();
 		
-		// Запоминаем стоимость оплаты по брони
+		// Remember payment amount
 		Double paymentAmount = page4.getPaymentAmount();
 		
-		// Сравниваем
+		// Check prices
 		Assert.assertFalse(total == paymentAmount, "Price is wrong!");
 	}
 }

@@ -46,45 +46,41 @@ public class Test_Id_2   extends BaseTest{
 		int children = 1;
 		int babies = 0;
 		WhereDoYouWantToGo page1 = PageFactory.initElements(driver, WhereDoYouWantToGo.class);
-		
-		// Проверка наличия секции "Where do you want to go?" 
-		Assert.assertTrue(page1.isSectionWhereDoYouWantToGoPresent(), "No suitable forms found!");
-			
-		// 1, 2 Заполнение  From and To
-		// т.к. в выпадающем списке отсутствует пункт отправления London
-		// заменяю его на Amsterdam (Schiphol), Netherlands, т.к. считаю, что это не повлияет на конечную цель теста
+				
+		// 1, 2 Set  "From" and "To"
+		// There is no "London" in "From" drop-down list, so I changed it to "Amsterdam (Schiphol), Netherlands"
 		page1.setFromTo(from,to);
 		
-		// 1, 2 Проверяем установленные значени To и From
+		// 1, 2 Check "To" and "From"
 		Assert.assertEquals(page1.getTo(), to, "Unable to fill 'To' field");
 		Assert.assertEquals(page1.getFrom(),from, "Unable to fill 'From' field");
 		
-		// 3 Устанавливаем необходимое количество пассажиров
+		// 3 Set number of passengers
 		page1.setNumberOfPassengers(adults, children, babies);
 		
-		// 3. Проверяем, что установилось заданное количество пассажиров
+		// 3. Check number of passengers
 		Assert.assertEquals(page1.getNumberOfAduls(), adults);
 		Assert.assertEquals(page1.getNumberOfChildren(), children);
 		Assert.assertEquals(page1.getNumberOfBabies(), babies);
 		
 		page1.clickOnOtherArea();
 		
-		//4 Кликаем Search
+		//4 Click "Search"
 		page1.clickSearch();
 		
 		SearchResults page2 = PageFactory.initElements(driver, SearchResults.class);
 
-		//5 Ищем заголовок Outbound flight
+		//5 Search "Outbound flight"
 		page2.findOutboundSection();
 
-		//Запоминаем цены перелетов
+		// Remember prices of flights
 		double toPrice = page2.getToPrice();
 		double fromPrice = page2.getFromPrice();
 
-		//5 Кликаем первую кнопку select в секции OutboundFlight
+		//5 Click first "Select" in section "OutboundFlight"
 		page2.clickSelectOutbound();
 
-		//6 Ищем заголовок Inbound flight
+		//6 Search "Inbound flight"
 		page2.clickSelectInbound();
 
 		try {
@@ -93,31 +89,32 @@ public class Test_Id_2   extends BaseTest{
 			e.printStackTrace();
 		} 
 		
-		//6 Кликаем первую кнопку select в секции InboundFlight		
+		//6 Click first "Select" in section "InboundFlight"		
 		page2.clickInboundFlightSelect();
-		System.out.println("5");
+
 		try {
 			Thread.sleep(3000);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
 		
-		//Кликаем Next
+		//7 Click "Next"
 		page2.clickNext();
-		System.out.println("6");
+
 		ChooseFare page3 = PageFactory.initElements(driver, ChooseFare.class);
 				
 		verificationErrors.append(page3.getErrorOnTextAbsence("Plus"));
-		System.out.println("7");
-		// Запоминаем цену багажа
+
+		// Remember prices of luggage
 		double luggagePrice = page3.getLuggagePrice();
-		System.out.println("8");		
+		
+		//8 Click "Select" in section "Plus"
 		page3.clickSelectPlus();
-		System.out.println("9");
-		// Запоминам итог
+
+		// Remember total price
 		double totalPrice = page3.getTotalPrice();
-		System.out.println("10");
-		// Проверяем, правильно ли подсчитан итог
+
+		//9 Check total price
 		Assert.assertTrue((((toPrice+fromPrice)*3)+(luggagePrice*3)==totalPrice),"The total price is wrong");
 	}
 }

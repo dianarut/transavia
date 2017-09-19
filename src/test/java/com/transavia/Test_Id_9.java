@@ -42,7 +42,7 @@ public class Test_Id_9 extends BaseTest{
 		
 		WhereDoYouWantToGo page1 = PageFactory.initElements(driver, WhereDoYouWantToGo.class);
 		
-		// 2 Клик на multiple destinations
+		// 2 Click "Multiple destinations"
 		page1.clickAddMultipleDestinations();
 		
 		SearchResults page2 = PageFactory.initElements(driver, SearchResults.class);
@@ -51,27 +51,27 @@ public class Test_Id_9 extends BaseTest{
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		// 3 Поиск  Outbound section
+		// 3 Search outbound section
 		Assert.assertTrue(page2.findOutboundSection(), "The Outbound section is not on page");
 		
-		// 3 Заполнение FromTo в Outbound
+		// 3 Set "From" and "To" in Outbound
 		page2.setFieldsFromToOutbound(outFrom, outTo);
 		
-		// 3 Проверка заполнения FromTo в Outbound
+		// 3 Check "From" and "To" in Outbound
 		Assert.assertEquals(page2.getToOutbound(), outTo, "Unable to fill 'To' field");
 		Assert.assertEquals(page2.getFromOutbound(),outFrom, "Unable to fill 'From' field");
 		
-		// 4 Поиск Inbound section
+		// 4 Search inbound section
 		Assert.assertTrue(page2.findInboundSection(), "The Inbound section is not on page");
 		
-		// 4 Заполнение FromTo в Inbound
+		// 4 Set "From" and "To" in Inbound
 		page2.setFieldsFromToInbound(inFrom, inTo);
 		
-		// 4 Проверка заполнения FromTo в Inbound
+		// 4 Check "From" and "To" in Inbound
 		Assert.assertEquals(page2.getToInbound(), inTo, "Unable to fill 'To' field");
 		Assert.assertEquals(page2.getFromInbound(),inFrom, "Unable to fill 'From' field");
 		
-		// 5 Кликаем Search
+		// 5 Click "Search"
 		page2.clickSearch();
 		
 		try {
@@ -80,7 +80,7 @@ public class Test_Id_9 extends BaseTest{
 			e.printStackTrace();
 		}
 		
-		// 6 Выбираем рейс
+		// 6 Select flight
 		page2.selectOutboundAvailableDate();
 		
 		try {
@@ -89,19 +89,19 @@ public class Test_Id_9 extends BaseTest{
 			e.printStackTrace();
 		}
 		
-		// 6 Сохраняем стоимость первой поездки
+		// 6 Remember price of first flights
 		double outPrice = page2.getOutPrice();
 		
-		// 6 Кликаем селект
+		// 6  Click "Select"
 		page2.clickSelectOutbound();	
 		
-		// 7 Выбираем рейс
+		// 7 Select flight
 		page2.selectInboundAvailableDate();
 		
-		// 7 Сохраняем стоимость второй поездки
+		// 7 Remember price of second flights
 		double inPrice = page2.getInPrice();
 		
-		// 7 Кликаем селект
+		// 7  Click "Select"
 		page2.clickSelectInbound();
 		
 		try {
@@ -110,11 +110,10 @@ public class Test_Id_9 extends BaseTest{
 			e.printStackTrace();
 		}
 		
-		// Сохраняем итоговую стоимость поездки
+		// Remember total price
 		double totalPrice = page2.getTotalPrice();
-		System.out.println(outPrice+inPrice);
-		System.out.println(totalPrice);
-		// Проверяем итоговую стоимость
+		
+		// Check total price
 		Assert.assertTrue((outPrice+inPrice==totalPrice), "The total price is wrong!");
 	}
 
