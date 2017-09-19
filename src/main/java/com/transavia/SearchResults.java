@@ -10,37 +10,37 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class SearchResults extends BasePage {
 
-	@FindBy(xpath = ".//*[@id='top']/div/div/div[3]/section/section/div/div[1]/section/div[1]/nav[2]/form/button")
+	@FindBy(xpath = ".//*[@class = 'button button-secondary'][ancestor :: *[@class = 'flight outbound']]") 
 	private WebElement rightAttowOut;
 
-	@FindBy(xpath = ".//*[@id='top']/div/div/div[3]/section/section/div/div[1]/section/div[1]/div/div[2]/div/form/ol/*/div[@class = 'day day-with-availability'or @class = 'day day-with-availability is-selected']")
+	@FindBy(xpath = ".//*[@class = 'day day-with-availability'or @class = 'day day-with-availability is-selected'][ancestor :: *[@class = 'flight outbound']]")
 	private WebElement availableFlightOut;
 
 	@FindBy(xpath = ".//*[@id='top']/div/div")
 	private WebElement body;
 
-	@FindBy(xpath = ".//*[@id='top']/div/div/div[3]/section/section/div/div[1]/div[2]/div/div[3]/div/form/div/button/div[3]/div[1]")
+	@FindBy(xpath = ".//*[@id='top']/div/div/div[3]/section/section/div/div[1]/div[2]/div/div[3]/div/form/div/button/div[3]/div[1]") 
 	private WebElement toPrice;
 
-	@FindBy(xpath = ".//*[@id='top']/div/div/div[4]/section/section/div/div[1]/div[2]/div/div[3]/div/form/div/button/div[3]/div[1]")
+	@FindBy(xpath = ".//*[@id='top']/div/div/div[4]/section/section/div/div[1]/div[2]/div/div[3]/div/form/div/button/div[3]/div[1]") 
 	private WebElement fromPrice;
 
-	@FindBy(xpath = ".//*[@id='top']/div/div/div[3]/section/section/div/div[1]/div[1]/div/div[1]/h2")
-	private WebElement outboundFlight;
+	@FindBy(xpath = ".//*[@class = 'h4'][child :: *[@class = 'icon-font icon-outbound']]") 
+	private WebElement outboundFlight;						
 
-	@FindBy(xpath = ".//*[@id='top']/div/div/div[3]/section/section/div/div[1]/div[2]/div/div[3]/div/form/div/button")
+	@FindBy(xpath = ".//*[@id='top']/div/div/div[3]/section/section/div/div[1]/div[2]/div/div[3]/div/form/div/button/div[3]") 					
 	private WebElement outboundFlightFirstSelect;
 
-	@FindBy(xpath = ".//*[@id='top']/div/div/div[4]/section/section/div/div[1]/div[2]/div/div[3]/div/form/div/button")
+	@FindBy(xpath = ".//*[@id='top']/div/div/div[4]/section/section/div/div[1]/div[2]/div/div[3]/div/form/div/button/div[3]")
 	private WebElement inboundFlightFirstSelect;
 
-	@FindBy(xpath = ".//*[@id='top']/form/div[1]/div/footer/div/div/section/div/button")
+	@FindBy(xpath = ".//*[@class = 'panel panel-total']//*[@name = 'next_button']")
 	private WebElement nextButton;
 
-	@FindBy(xpath = "//*[@id='flights']/div/section/div[2]/div[1]/div/div/div[1]/div/div/div[2]/p")
+	@FindBy(xpath = "//*[@class = 'notification-message notification-inline notification-error']/p") 
 	private WebElement errorMessage;
 
-	@FindBy(xpath = ".//*[@id='flights']/div/section/div[2]/div[1]/div[1]")
+	@FindBy(xpath = ".//*[@class = 'h4'][child :: *[@class = 'icon-font icon-outbound']]") 
 	private WebElement outboundSection;
 
 	@FindBy(id = "openJawRouteSelection_DepartureStationOutbound-input")
@@ -48,14 +48,14 @@ public class SearchResults extends BasePage {
 
 	@FindBy(id = "openJawRouteSelection_ArrivalStationOutbound-input")
 	private WebElement toOutbound;
-
-	@FindBy(xpath = ".//*[@id='flights']/div/section/div[2]/div[1]/div[1]/div/div/div[3]/div/div[1]/span")
+	
+	@FindBy(xpath = ".//*[@class='datepicker-trigger icon-font icon-calendar'][preceding-sibling :: *[@id = 'dateSelection_OutboundDate-datepicker']]") 
 	private WebElement calendarIcon;
 
 	@FindBy(id = "dateSelection_OutboundDate-datepicker")
 	private WebElement calendarField;
 
-	@FindBy(xpath = ".//*[@id='flights']/div/section/div[2]/div[1]/div[2]")
+	@FindBy(xpath = ".//*[@class = 'h4'][child :: *[@class = 'icon-font icon-inbound']]")
 	private WebElement inboundSection;
 
 	@FindBy(id = "openJawRouteSelection_DepartureStationInbound-input")
@@ -64,33 +64,35 @@ public class SearchResults extends BasePage {
 	@FindBy(id = "openJawRouteSelection_ArrivalStationInbound-input")
 	private WebElement toInbound;
 
-	@FindBy(xpath = ".//*[@id='flights']/div/section/div[3]/div/button[2]")
+	@FindBy(xpath = ".//*[@class = 'button button-primary'][ancestor :: *[@class ='panel_section panel_section--button-search']]") 
 	private WebElement searchButton;
 
-	@FindBy(xpath = ".//*[@id='top']/div/div/div[3]/section/section/div/div[1]/section/div[1]/div/div[2]/div/form/ol/li[4]/div[@class='day day-with-availability' or @class='day day-with-availability is-selected']")
+	@FindBy(xpath = ".//*[@class='day day-with-availability' or @class='day day-with-availability is-selected'][ancestor :: *[@class = 'flight outbound']]")
 	private WebElement outboundAvailableDate;
 
-	@FindBy(xpath = ".//*[@id='top']/div/div/div[4]/section/section/div/div[1]/section/div[1]/div/div[2]/div/form/ol/li/div[@class='day day-with-availability']")
+	@FindBy(xpath = ".//*[@class='day day-with-availability' or @class='day day-with-availability is-selected'][ancestor :: *[@class = 'flight inbound']]") 
 	private WebElement inboundAvailableDate;
 
-	@FindBy(xpath = ".//*[@id='top']/div/div/div[3]/section/section/div/div[1]/div[2]/div/div[3]/div/form/div")
+	@FindBy(xpath = ".//*[@class = 'panel flight-result active'][ancestor :: *[@class = 'flight outbound']]")
 	private WebElement selectOutboundButton;
 
-	@FindBy(xpath = ".//*[@id='top']/div/div/div[4]/section/section/div/div[1]/div[2]/div/div[3]/div/form/div/button")
+	@FindBy(xpath = ".//*[@class = 'panel flight-result active'][ancestor :: *[@class = 'flight inbound']]") 
 	private WebElement selectInboundButton;
 
+	//formPrice
 	@FindBy(xpath = ".//*[@id='top']/div/div/div[3]/section/section/div/div[1]/div[2]/div/div[3]/div/form/div/button/div[3]/div[1]")
 	private WebElement outPrice;
-
+	//toPrice
 	@FindBy(xpath = ".//*[@id='top']/div/div/div[4]/section/section/div/div[1]/div[2]/div/div[3]/div/form/div/button/div[3]/div[1]")
 	private WebElement inPrice;
 
-	@FindBy(xpath = ".//*[@id='top']/form/div[1]/div/footer/div/div/section/div/div/div[2]/div/div/div[2]")
+	@FindBy(xpath = ".//*[@class = 'back'][ancestor :: *[@class = 'grand-total__price-container']]") 
 	private WebElement totalPrice;
 
 	
-	@FindBy (xpath = ".//*[@id='top']/div/div/div[4]/section/section/div/div[1]/div[2]/div/div[3]/div/form/div")
+	@FindBy (xpath = ".//*[@class = 'panel panel--rounded-group'][preceding-sibling :: *[@value = 'InboundFlight']]") 
 	private WebElement inboundFlightInforamation;
+	
 	public SearchResults(WebDriver driver) {
 		super(driver);
 		// Verifying that we have rigth page

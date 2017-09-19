@@ -3,13 +3,13 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test name="Default test(failed)">
     <classes>
-      <class name="com.transavia.Test_Id_4">
+      <class name="com.transavia.Test_Id_2">
         <methods>
           <include name="beforeClass"/>
-          <include name="TestId4"/>
+          <include name="testId2"/>
           <include name="afterClass"/>
         </methods>
-      </class> <!-- com.transavia.Test_Id_4 -->
+      </class> <!-- com.transavia.Test_Id_2 -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

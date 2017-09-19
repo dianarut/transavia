@@ -7,16 +7,16 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class ChooseFare extends BasePage{
 	
-	@FindBy (xpath = ".//*[@class = 'th position-relative cursor-pointer' and @data-product-class = 'B']") //.//*[@id='top']/div[1]/div[1]/div/div/div[2]/div/div[2]/table/thead/tr/th[3]
+	@FindBy (xpath = ".//*[@class = 'th position-relative cursor-pointer' and @data-product-class = 'B']") 
 	private WebElement plusFare;
 	
-	@FindBy (xpath = ".//*[@class = 'th position-relative cursor-pointer' and @data-product-class = 'B']/*[@class = 'price pull-right']") //.//*[@id='top']/div[1]/div[1]/div/div/div[2]/div/div[2]/table/thead/tr/th[3]/span[2]
+	@FindBy (xpath = ".//*[@class = 'th position-relative cursor-pointer' and @data-product-class = 'B']/*[@class = 'price pull-right']")
 	private WebElement luggagePrice;
 	
-	@FindBy (xpath = ".//*[@class = 'button button--selection' and @value = 'B'][ancestor :: *[@class = 'HV-gu--bp0--y2-24 HV-gu-panels--bp10--y2-24']]") //.//*[@id='top']/div[1]/div[1]/div/div/div[2]/div/div[2]/table/tfoot/tr/td[3]/div/div/button[1]
+	@FindBy (xpath = " .//*[@class = 'button button--selection' and @value = 'B'][ancestor :: *[@class ='is-hidden is-visible-block--bp25']]") 
 	private WebElement selectPlus;
 	
-	@FindBy (xpath = ".//*[@class = 'back'][child :: *[@class ='price-decimals']]") //.//*[@id='top']/div[2]/form/div[1]/div/footer/div/div/section/div/div/div[2]/div/div/div[2]
+	@FindBy (xpath = ".//*[@class = 'back'][child :: *[@class ='price-decimals']]")
 	private WebElement totalPrice;
 	
 	public ChooseFare(WebDriver driver) {

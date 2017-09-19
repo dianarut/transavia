@@ -7,10 +7,10 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class BookingDetails extends BasePage{
 	
-	@FindBy (xpath = ".//*[@class = 'flipper']//*[@class = 'front']") //.//*[@id='top']/div/div[5]/div/div/div/section/div[5]/div/div[2]/div/div/div
+	@FindBy (xpath = ".//*[@class = 'flipper']//*[@class = 'front']") 
 	private WebElement total;
 	
-	@FindBy (xpath = ".//*[@class = 'amount'][ancestor :: *[@class = 'panel_section panel_section--content no-padding-bottom']]") //.//*[@id='top']/div/div[6]/section/div/div[2]/div/div/div[2]/div
+	@FindBy (xpath = ".//*[@class = 'amount'][ancestor :: *[@class = 'panel_section panel_section--content no-padding-bottom']]") 
 	private WebElement paymentAmount;
 	
 	public BookingDetails (WebDriver driver) {

@@ -73,29 +73,29 @@ public class Test_Id_2   extends BaseTest{
 		page1.clickSearch();
 		
 		SearchResults page2 = PageFactory.initElements(driver, SearchResults.class);
-		
+
 		//5 Ищем заголовок Outbound flight
 		page2.findOutboundSection();
-		
+
 		//Запоминаем цены перелетов
 		double toPrice = page2.getToPrice();
 		double fromPrice = page2.getFromPrice();
-		
+
 		//5 Кликаем первую кнопку select в секции OutboundFlight
-		page2.clickOutboundFlightSelect();
-			
+		page2.clickSelectOutbound();
+
 		//6 Ищем заголовок Inbound flight
-		page2.findInboundSection();
+		page2.clickSelectInbound();
 
 		try {
-			Thread.sleep(3000);
+			Thread.sleep(2000);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		} 
 		
 		//6 Кликаем первую кнопку select в секции InboundFlight		
 		page2.clickInboundFlightSelect();
-		
+		System.out.println("5");
 		try {
 			Thread.sleep(3000);
 		} catch (InterruptedException e) {
@@ -104,18 +104,19 @@ public class Test_Id_2   extends BaseTest{
 		
 		//Кликаем Next
 		page2.clickNext();
-		
+		System.out.println("6");
 		ChooseFare page3 = PageFactory.initElements(driver, ChooseFare.class);
 				
 		verificationErrors.append(page3.getErrorOnTextAbsence("Plus"));
-		
+		System.out.println("7");
 		// Запоминаем цену багажа
 		double luggagePrice = page3.getLuggagePrice();
-				
+		System.out.println("8");		
 		page3.clickSelectPlus();
-		
+		System.out.println("9");
 		// Запоминам итог
 		double totalPrice = page3.getTotalPrice();
+		System.out.println("10");
 		// Проверяем, правильно ли подсчитан итог
 		Assert.assertTrue((((toPrice+fromPrice)*3)+(luggagePrice*3)==totalPrice),"The total price is wrong");
 	}
