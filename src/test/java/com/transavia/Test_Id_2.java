@@ -1,6 +1,9 @@
 package com.transavia;
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -46,7 +49,13 @@ public class Test_Id_2   extends BaseTest{
 		int children = 1;
 		int babies = 0;
 		WhereDoYouWantToGo page1 = PageFactory.initElements(driver, WhereDoYouWantToGo.class);
-				
+		
+		(new WebDriverWait(driver, 20)).until(new ExpectedCondition<Boolean>() {
+			public Boolean apply (WebDriver d){
+				return d.getTitle().toLowerCase().startsWith("transavia");
+			}
+		});
+		
 		// 1, 2 Set  "From" and "To"
 		// There is no "London" in "From" drop-down list, so I changed it to "Amsterdam (Schiphol), Netherlands"
 		page1.setFromTo(from,to);
@@ -76,8 +85,6 @@ public class Test_Id_2   extends BaseTest{
 		// Remember prices of flights
 		double toPrice = page2.getToPrice();
 		double fromPrice = page2.getFromPrice();
-		System.out.println(toPrice);
-		System.out.println(fromPrice);
 		//5 Click first "Select" in section "OutboundFlight"
 		page2.clickSelectOutbound();
 

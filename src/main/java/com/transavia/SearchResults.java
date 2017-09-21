@@ -19,20 +19,8 @@ public class SearchResults extends BasePage {
 	@FindBy(xpath = ".//*[@id='top']/div/div")
 	private WebElement body;
 
-	@FindBy(xpath = ".//*[@class = 'price'][ancestor :: *[@class = 'HV-gu-buttons--bp0--y1-1 HV-gu-buttons--bp0--x1-3 HV-gu--bp0--33p HV-gu-buttons--bp20--y1-1 HV-gu-buttons--bp20--x2-5 HV-gu--bp20--20p HV-gu-buttons--bp27--y1-1 HV-gu-buttons--bp27--x3-7 HV-gu--bp27--14p']]") //.//*[@id='top']/div/div/div[3]/section/section/div/div[1]/div[2]/div/div[3]/div/form/div/button/div[3]/div[1]
-	private WebElement toPrice;
-
-	@FindBy(xpath = ".//*[@class = 'price'][ancestor :: *[@class = 'HV-gs--bp0 HV-gs-type-g--bp25']]") 
-	private WebElement fromPrice;
-
-	@FindBy(xpath = ".//*[@class = 'h4'][child :: *[@class = 'icon-font icon-outbound']]") 
+	@FindBy(xpath = ".//*[@data-related-error-container = 'chronological']") 
 	private WebElement outboundFlight;						
-
-	@FindBy(xpath = ".//*[@class = 'price'][ancestor :: *[@class = 'HV-gu-buttons--bp0--y1-1 HV-gu-buttons--bp0--x1-3 HV-gu--bp0--33p HV-gu-buttons--bp20--y1-1 HV-gu-buttons--bp20--x2-5 HV-gu--bp20--20p HV-gu-buttons--bp27--y1-1 HV-gu-buttons--bp27--x3-7 HV-gu--bp27--14p']]") 					
-	private WebElement outboundFlightFirstSelect;
-
-	@FindBy(xpath = ".//*[@class = 'price'][ancestor :: *[@class = 'HV-gs--bp0 HV-gs-type-g--bp25']]")
-	private WebElement inboundFlightFirstSelect;
 
 	@FindBy(xpath = ".//*[@class = 'panel panel-total']//*[@name = 'next_button']")
 	private WebElement nextButton;
@@ -40,7 +28,7 @@ public class SearchResults extends BasePage {
 	@FindBy(xpath = "//*[@class = 'notification-message notification-inline notification-error']/p") 
 	private WebElement errorMessage;
 
-	@FindBy(xpath = ".//*[@class = 'h4'][child :: *[@class = 'icon-font icon-outbound']]") 
+	@FindBy(xpath = ".//*[@class = 'HV-gs--bp0 HV-gs-type-f--bp22']") 
 	private WebElement outboundSection;
 
 	@FindBy(id = "openJawRouteSelection_DepartureStationOutbound-input")
@@ -55,7 +43,7 @@ public class SearchResults extends BasePage {
 	@FindBy(id = "dateSelection_OutboundDate-datepicker")
 	private WebElement calendarField;
 
-	@FindBy(xpath = ".//*[@class = 'h4'][child :: *[@class = 'icon-font icon-inbound']]")
+	@FindBy(xpath = ".//*[@class = 'HV-gc'][ancestor :: *[@class = 'HV-gs--bp0 HV-gs--bp10']]")
 	private WebElement inboundSection;
 
 	@FindBy(id = "openJawRouteSelection_DepartureStationInbound-input")
@@ -64,7 +52,7 @@ public class SearchResults extends BasePage {
 	@FindBy(id = "openJawRouteSelection_ArrivalStationInbound-input")
 	private WebElement toInbound;
 
-	@FindBy(xpath = ".//*[@class = 'button button-primary'][ancestor :: *[@class ='panel_section panel_section--button-search']]") 
+	@FindBy(xpath = ".//*[@class = 'button button-primary' and @type = 'submit'][ancestor :: *[@class ='panel_section panel_section--button-search']]") 
 	private WebElement searchButton;
 
 	@FindBy(xpath = ".//*[@class='day day-with-availability' or @class='day day-with-availability is-selected'][ancestor :: *[@class = 'flight outbound']]")
@@ -80,13 +68,13 @@ public class SearchResults extends BasePage {
 	private WebElement selectInboundButton;
 
 	//formPrice
-	@FindBy(xpath = ".//*[@class = 'price'][ancestor :: *[@class = 'HV-gu-buttons--bp0--y1-1 HV-gu-buttons--bp0--x1-3 HV-gu--bp0--33p HV-gu-buttons--bp20--y1-1 HV-gu-buttons--bp20--x2-5 HV-gu--bp20--20p HV-gu-buttons--bp27--y1-1 HV-gu-buttons--bp27--x3-7 HV-gu--bp27--14p']]")
+	@FindBy(xpath = ".//*[@id='top']/div/div/div[3]/section/section/div/div[1]/div[2]/div/div[3]/div/form/div/button/div[3]/div[1]")
 	private WebElement outPrice;
 	//toPrice
-	@FindBy(xpath = ".//*[@class = 'price'][ancestor :: *[@class = 'HV-gs--bp0 HV-gs-type-g--bp25']]")
+	@FindBy(xpath = ".//*[@id='top']/div/div/div[4]/section/section/div/div[1]/div[2]/div/div[3]/div/form/div/button/div[3]/div[1]")
 	private WebElement inPrice;
 
-	@FindBy(xpath = ".//*[@class = 'back'][ancestor :: *[@class = 'grand-total__price-container']]") 
+	@FindBy(xpath = ".//*[@class = 'back'][parent :: *[@class = 'flipper']]") 
 	private WebElement totalPrice;
 
 	
@@ -134,29 +122,29 @@ public class SearchResults extends BasePage {
 	
 	
 	public double getToPrice() {
-		wait.until(ExpectedConditions.visibilityOf(toPrice));
-		String tPrice = toPrice.getText();
+		wait.until(ExpectedConditions.visibilityOf(outPrice));
+		String tPrice = outPrice.getText();
 		return Double.parseDouble(tPrice.replace("€ ", "").replace(",", "").replace("From", ""));
 	}
 
 	
 	public double getFromPrice() {
-		wait.until(ExpectedConditions.visibilityOf(fromPrice));
-		String frPrice = fromPrice.getText();
+		wait.until(ExpectedConditions.visibilityOf(inPrice));
+		String frPrice = inPrice.getText();
 		return Double.parseDouble(frPrice.replace("€ ", "").replace(",", "").replace("From", ""));
 	}
 
 	// Click "Select" in section "Outbound flight"
 	public SearchResults clickOutboundFlightSelect() {
-		wait.until(ExpectedConditions.visibilityOf(outboundFlightFirstSelect));
-		outboundFlightFirstSelect.click();
+		wait.until(ExpectedConditions.visibilityOf(outPrice));
+		outPrice.click();
 		return this;
 	}
 
 	// Click "Select" in section "Inbound flight"
 	public SearchResults clickInboundFlightSelect() {
-		wait.until(ExpectedConditions.visibilityOf(inboundFlightFirstSelect));
-		inboundFlightFirstSelect.click();
+		wait.until(ExpectedConditions.visibilityOf(inPrice));
+		inPrice.click();
 		return this;
 	}
 
@@ -277,6 +265,7 @@ public class SearchResults extends BasePage {
 	}
 
 	public SearchResults clickSearch() {
+		wait.until(ExpectedConditions.visibilityOf(searchButton));
 		searchButton.click();
 		return this;
 	}
@@ -322,7 +311,7 @@ public class SearchResults extends BasePage {
 	}
 
 	public double getTotalPrice() {
-		wait.until(ExpectedConditions.visibilityOf(outboundAvailableDate));
+		wait.until(ExpectedConditions.visibilityOf(totalPrice));
 		String price = totalPrice.getText();
 		return Double.parseDouble(price.replace("€ ", ""));
 	}

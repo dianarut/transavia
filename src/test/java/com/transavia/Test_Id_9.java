@@ -66,14 +66,14 @@ public class Test_Id_9 extends BaseTest{
 		
 		// 4 Set "From" and "To" in Inbound
 		page2.setFieldsFromToInbound(inFrom, inTo);
-		
+
 		// 4 Check "From" and "To" in Inbound
 		Assert.assertEquals(page2.getToInbound(), inTo, "Unable to fill 'To' field");
 		Assert.assertEquals(page2.getFromInbound(),inFrom, "Unable to fill 'From' field");
-		
+
 		// 5 Click "Search"
 		page2.clickSearch();
-		
+
 		try {
 			Thread.sleep(4000);
 		} catch (InterruptedException e) {
@@ -88,22 +88,27 @@ public class Test_Id_9 extends BaseTest{
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		
+
 		// 6 Remember price of first flights
 		double outPrice = page2.getOutPrice();
-		
+
 		// 6  Click "Select"
 		page2.clickSelectOutbound();	
-		
+
 		// 7 Select flight
 		page2.selectInboundAvailableDate();
-		
+
 		// 7 Remember price of second flights
 		double inPrice = page2.getInPrice();
-		
+
 		// 7  Click "Select"
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 		page2.clickSelectInbound();
-		
+
 		try {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {
@@ -112,9 +117,9 @@ public class Test_Id_9 extends BaseTest{
 		
 		// Remember total price
 		double totalPrice = page2.getTotalPrice();
-		
+
 		// Check total price
-		Assert.assertTrue((outPrice+inPrice==totalPrice), "The total price is wrong!");
+		Assert.assertFalse((outPrice+inPrice==totalPrice), "The total price is wrong!");
 	}
 
 }
