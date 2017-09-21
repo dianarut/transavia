@@ -108,12 +108,6 @@ public class Test_Id_9 extends BaseTest{
 			e.printStackTrace();
 		}
 		page2.clickSelectInbound();
-
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
 		
 		// Remember total price
 		double totalPrice = page2.getTotalPrice();

@@ -33,11 +33,18 @@ public class Test_Id_4  extends BaseTest{
 		
 		WhereDoYouWantToGo page1 = PageFactory.initElements(driver, WhereDoYouWantToGo.class);
 		
-		(new WebDriverWait(driver, 20)).until(new ExpectedCondition<Boolean>() {
-			public Boolean apply (WebDriver d){
-				return d.getTitle().toLowerCase().startsWith("transavia");
-			}
-		});
+//		(new WebDriverWait(driver, 20)).until(new ExpectedCondition<Boolean>() {
+//			public Boolean apply (WebDriver d){
+//				return d.getTitle().toLowerCase().startsWith("transavia");
+//			}
+//		});
+		
+		
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 		
 		//2 Click "ManageYourBooking"
 		page1.clickManageYourBooking();

@@ -50,11 +50,17 @@ public class Test_Id_2   extends BaseTest{
 		int babies = 0;
 		WhereDoYouWantToGo page1 = PageFactory.initElements(driver, WhereDoYouWantToGo.class);
 		
-		(new WebDriverWait(driver, 20)).until(new ExpectedCondition<Boolean>() {
-			public Boolean apply (WebDriver d){
-				return d.getTitle().toLowerCase().startsWith("transavia");
-			}
-		});
+//		(new WebDriverWait(driver, 20)).until(new ExpectedCondition<Boolean>() {
+//			public Boolean apply (WebDriver d){
+//				return d.getTitle().toLowerCase().startsWith("transavia");
+//			}
+//		});
+		
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		} 
 		
 		// 1, 2 Set  "From" and "To"
 		// There is no "London" in "From" drop-down list, so I changed it to "Amsterdam (Schiphol), Netherlands"
@@ -80,17 +86,18 @@ public class Test_Id_2   extends BaseTest{
 		SearchResults page2 = PageFactory.initElements(driver, SearchResults.class);
 
 		//5 Search "Outbound flight"
-		page2.findOutboundSection();
+		page2.findOutboundFlight();
 
-		// Remember prices of flights
+		// Remember prices of flights 
 		double toPrice = page2.getToPrice();
 		double fromPrice = page2.getFromPrice();
+
 		//5 Click first "Select" in section "OutboundFlight"
 		page2.clickSelectOutbound();
 
 		//6 Search "Inbound flight"
-		page2.clickSelectInbound();
-
+		page2.findInboundFlight();
+		
 		try {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {

@@ -81,6 +81,12 @@ public class SearchResults extends BasePage {
 	@FindBy (xpath = ".//*[@class = 'panel panel--rounded-group'][preceding-sibling :: *[@value = 'InboundFlight']]") 
 	private WebElement inboundFlightInforamation;
 	
+	@FindBy(xpath = ".//*[@class = 'panel'][child :: *[@class = 'flight outbound']]")
+	private WebElement outSection;
+	
+	@FindBy(xpath = ".//*[@class = 'panel'][child :: *[@class = 'flight inbound']]")
+	private WebElement inSection;
+	
 	public SearchResults(WebDriver driver) {
 		super(driver);
 		if ((!driver.getTitle().equals("Book a flight"))
@@ -112,12 +118,12 @@ public class SearchResults extends BasePage {
 	
 	// Search section "Outbound flight"
 	public void findOutboundFlight(){
-		getErrorOnTextAbsence(outboundSection, "Outbound flight");
+		getErrorOnTextAbsence(outSection, "Outbound flight");
 	}
 	
 	// Search section "Inbound flight"
 	public void findInboundFlight(){
-		getErrorOnTextAbsence(inboundSection, "Inbound flight");
+		getErrorOnTextAbsence(inSection, "Inbound flight");
 	}
 	
 	
