@@ -1,6 +1,9 @@
 package com.transavia;
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -34,11 +37,11 @@ public class Test_Id_3 extends BaseTest{
 		
 		WhereDoYouWantToGo page1 = PageFactory.initElements(driver, WhereDoYouWantToGo.class);
 		
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+		(new WebDriverWait(driver, 10)).until(new ExpectedCondition<Boolean>() {
+			public Boolean apply (WebDriver d){
+				return d.getTitle().toLowerCase().startsWith("transavia");
+			}
+		});
 		
 		//2 Click "ManageYourBooking"
 		page1.clickManageYourBooking();

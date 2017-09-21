@@ -76,7 +76,8 @@ public class Test_Id_2   extends BaseTest{
 		// Remember prices of flights
 		double toPrice = page2.getToPrice();
 		double fromPrice = page2.getFromPrice();
-
+		System.out.println(toPrice);
+		System.out.println(fromPrice);
 		//5 Click first "Select" in section "OutboundFlight"
 		page2.clickSelectOutbound();
 

@@ -17,10 +17,10 @@ public class AccountLogon extends BasePage{
 	@FindBy (id = "retrieveBookingByLastname_FlightDate-datepicker")
 	private WebElement flightDate ;
 	
-	@FindBy (xpath = ".//*[@id='top']/section/div/div")
+	@FindBy (xpath = ".//*[@class = 'content-block content-block--green']")
 	private WebElement justArea;
 	
-	@FindBy (xpath = ".//*[@id='access-booking']/div/div/div/button")
+	@FindBy (xpath = ".//*[@class = 'button button-primary'][parent :: *[@class = 'field no-padding-bottom']]")
 	private WebElement viewBooking;
 	
 	public AccountLogon (WebDriver driver) {

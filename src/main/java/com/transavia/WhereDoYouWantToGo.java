@@ -20,56 +20,62 @@ public class WhereDoYouWantToGo extends BasePage{
 	@FindBy (id = "routeSelection_ArrivalStation-input")
 	private WebElement to;
 
-	@FindBy (xpath = "//div [@class='autocomplete-results'][preceding-sibling :: input [@id = 'routeSelection_DepartureStation-input']]")
+	@FindBy (xpath = "//* [@class='autocomplete-results'][preceding-sibling :: * [@id = 'routeSelection_DepartureStation-input']]")
 	private WebElement fromDropDownList;
 	
-	@FindBy (xpath = "//div [@class='autocomplete-results'][preceding-sibling :: input [@id = 'routeSelection_ArrivalStation-input']]")
+	@FindBy (xpath = "//* [@class='autocomplete-results'][preceding-sibling :: *[@id = 'routeSelection_ArrivalStation-input']]")
 	private WebElement toDropDownListl;
 	
-	@FindBy (xpath = ".//*[@id='top']/div[2]")
+	@FindBy (xpath = ".//*[@class = 'logo logo--stacked-inverted max-width-10rem']")
 	private WebElement image;
 	
-	@FindBy (xpath = "//span [@class='datepicker-trigger icon-font icon-calendar'][preceding-sibling :: input [@id = 'dateSelection_OutboundDate-datepicker']]") 
+	@FindBy (xpath = "//*[@class='datepicker-trigger icon-font icon-calendar'][preceding-sibling :: * [@id = 'dateSelection_OutboundDate-datepicker']]") 
 	private WebElement  calendarIcon;
 
 	@FindBy (id = "dateSelection_OutboundDate-datepicker")
 	private WebElement calendarField;
 	
-	@FindBy (xpath = "//label [@class='h6'][preceding-sibling :: input [@id = 'dateSelection_IsReturnFlight']]") 
+	@FindBy (xpath = "//*[@class='h6'][preceding-sibling :: *[@id = 'dateSelection_IsReturnFlight']]") 
 	private WebElement returnOn;
 	
 	@FindBy (id = "booking-passengers-input")
 	private WebElement numberOfPassengers;
 	
-	@FindBy (xpath = "//button [@class='button button-secondary increase'][preceding-sibling :: div [child :: select [@id = 'booking-adults']]]") 
+	@FindBy (xpath = "//* [@class='button button-secondary increase'][preceding-sibling :: *[child :: *[@id = 'booking-adults']]]") 
 	private WebElement plusAdults;
 	
-	@FindBy (xpath = "//button [@class='button button-secondary increase'][preceding-sibling :: div [child :: select [@id = 'booking-children']]]")
+	@FindBy (xpath = "//*[@class='button button-secondary increase'][preceding-sibling :: *[child :: *[@id = 'booking-children']]]")
 	private WebElement plusChildren;
 	
-	@FindBy (xpath = "//button [@class='button button-secondary increase'][preceding-sibling :: div [child :: select [@id = 'booking-infants']]]") 
+	@FindBy (xpath = "//*[@class='button button-secondary increase'][preceding-sibling :: *[child :: * [@id = 'booking-infants']]]") 
 	private WebElement plusBabies;
 	
-	@FindBy (xpath = "//div [@class='textfield'][preceding-sibling :: div [child :: select [@id = 'booking-adults']]]/input") 
+	@FindBy (xpath = "//*[@class='textfield'][preceding-sibling :: *[child :: *[@id = 'booking-adults']]]/*[@type = 'text']") 
 	private WebElement numberAdults;
 	
-	@FindBy (xpath = "//div [@class='textfield'][preceding-sibling :: div [child :: select [@id = 'booking-children']]]/input") 
+	@FindBy (xpath = "//*[@class='textfield'][preceding-sibling :: *[child :: *[@id = 'booking-children']]]/*[@type = 'text']") 
 	private WebElement numberChildren;
 	
-	@FindBy (xpath = "//div [@class='textfield'][preceding-sibling :: div [child :: select [@id = 'booking-infants']]]/input") 
+	@FindBy (xpath = "//*[@class='textfield'][preceding-sibling :: *[child :: *[@id = 'booking-infants']]]/*[@type = 'text']") 
 	private WebElement numberBabies;
 	
-	@FindBy (xpath = ".//*[@id='desktop']/section/div/div/button") 
+	@FindBy (xpath = ".//*[@class = 'button button-primary'][ancestor :: *[@id = 'desktop']]") 
 	private WebElement searchButton;
 	
-	@FindBy (xpath = ".//*[@id='desktop']/section/div[3]/ul/li[2]/a")
+	@FindBy (xpath = ".//*[@class = 'no-underline icon-animation-right'][ancestor :: *[@id = 'desktop']][@data-module]")
 	private WebElement AddMultipleDestinations;
 	
-	@FindBy (xpath ="html/body/header/nav/div[1]/div[1]/ul/li[3]/a")
+	@FindBy (xpath =".//*[@class = 'h5 primary-navigation_link'][following-sibling :: *[@id = 'horizontal-sub-navigation-manageyourbooking']]")
 	private WebElement manageYourBooking;
 	
-	@FindBy (xpath =".//a[@class = 'sub-navigation_link sub-navigation-level-1_link h5'][descendant :: span[@class = 'stamp icon-font icon-account']]") 
+	@FindBy (xpath =".//*[@class = 'sub-navigation_link sub-navigation-level-1_link h5'][descendant :: *[@class = 'stamp icon-font icon-account']]") 
 	private WebElement  viewYourBooking;
+	
+	@FindBy (xpath = ".//*[@class = 'h5 primary-navigation_link'][following-sibling :: *[@id = 'horizontal-sub-navigation-service']]")
+	private WebElement service;
+	
+	@FindBy (xpath =  ".//*[@href = '/en-UK/service/hand-luggage/'][ancestor :: *[@id = 'horizontal-sub-navigation-service']]")
+	private WebElement handluggage;
 	
 	public WhereDoYouWantToGo(WebDriver driver) {
 		super(driver);
@@ -264,6 +270,18 @@ public class WhereDoYouWantToGo extends BasePage{
 	public WhereDoYouWantToGo clickViewYourBooking(){
 		wait.until(ExpectedConditions.visibilityOf(viewYourBooking));
 		viewYourBooking.click();
+		return this;
+	}
+	
+	public WhereDoYouWantToGo clickSevice(){
+		wait.until(ExpectedConditions.visibilityOf(service));
+		service.click();
+		return this;
+	}
+	
+	public WhereDoYouWantToGo clickHandluggage (){
+		wait.until(ExpectedConditions.visibilityOf(handluggage));
+		handluggage.click();
 		return this;
 	}
 	

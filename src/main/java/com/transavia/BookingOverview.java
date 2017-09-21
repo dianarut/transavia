@@ -7,7 +7,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class BookingOverview extends BasePage{
 	
-	@FindBy (xpath = ".//*[@id='top']/div[1]/div/div[1]/div[2]")
+	@FindBy (xpath = ".//*[@class = 'flight-details']/*[@class = 'HV-gs--bp0']")
 	private WebElement table;
 	
 	@FindBy (xpath = ".//a[@class = 'icon-left-side icon-animation-next'][parent :: div[@class = 'HV-gu--bp0--x3-3 HV-gu--bp0--33p text-align-right']]") 

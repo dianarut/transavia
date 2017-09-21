@@ -13,7 +13,9 @@ public abstract class BasePage {
     public BasePage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(this.driver, this);
-        this.wait = new WebDriverWait(this.driver, 60);
+        this.wait = new WebDriverWait(this.driver, 30);
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
+        driver.manage().timeouts().setScriptTimeout(10, TimeUnit.SECONDS);
     }
 }
