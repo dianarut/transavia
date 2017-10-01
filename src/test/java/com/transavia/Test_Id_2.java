@@ -1,9 +1,6 @@
 package com.transavia;
 
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -43,6 +40,9 @@ public class Test_Id_2   extends BaseTest{
 	@Test
 	public void testId2() {
 		
+		// In the "from" drop-down list isn't the place of departure in city London,
+		// so I choose city Amsterdam.
+		// I think this decision isn't going to affect to main goal of test.
 		String from = "Amsterdam (Schiphol), Netherlands";
 		String to = "Paris (Orly South), France";
 		int adults = 2;
@@ -50,12 +50,9 @@ public class Test_Id_2   extends BaseTest{
 		int babies = 0;
 		WhereDoYouWantToGo page1 = PageFactory.initElements(driver, WhereDoYouWantToGo.class);
 		
-//		(new WebDriverWait(driver, 20)).until(new ExpectedCondition<Boolean>() {
-//			public Boolean apply (WebDriver d){
-//				return d.getTitle().toLowerCase().startsWith("transavia");
-//			}
-//		});
-		
+		//I use this construction because this page has a way of refresh the page 
+		// after the appearance of necessary fields.
+		// I know that this construction is awful, but I don't know any other way for this occasion.
 		try {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {
@@ -105,7 +102,7 @@ public class Test_Id_2   extends BaseTest{
 		} 
 		
 		//6 Click first "Select" in section "InboundFlight"		
-		page2.clickInboundFlightSelect();
+		page2.clickSelectInbound();
 
 		try {
 			Thread.sleep(3000);

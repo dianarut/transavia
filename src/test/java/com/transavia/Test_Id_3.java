@@ -1,9 +1,6 @@
 package com.transavia;
 
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -37,6 +34,7 @@ public class Test_Id_3 extends BaseTest{
 		
 		WhereDoYouWantToGo page1 = PageFactory.initElements(driver, WhereDoYouWantToGo.class);
 		
+		//.//*[@class = 'sub-navigation_link sub-navigation-level-1_link h5'][descendant :: *[@class = 'stamp icon-font icon-account']]]
 //		(new WebDriverWait(driver, 10)).until(new ExpectedCondition<Boolean>() {
 //			public Boolean apply (WebDriver d){
 //				return d.getTitle().toLowerCase().startsWith("transavia");
