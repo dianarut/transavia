@@ -6,6 +6,8 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+	// this comment is just for second commit.
+	
 public class Test_Id_1  extends BaseTest{
 	// 1. Появляется окно выбора маршрута "Where do you want to go?"
 	// 2. Появляется выпадающий список с названиями доступных мест для перелета в поле "FROM"
