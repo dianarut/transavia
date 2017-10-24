@@ -6,4 +6,4 @@ I am readme-file!
 bla-bla-bla
 
 
-second dev commit.
+first dev commit.
