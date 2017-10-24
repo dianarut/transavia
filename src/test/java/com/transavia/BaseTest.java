@@ -10,7 +10,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 
 public abstract class BaseTest {
-	
+	//
 	protected String base_url = "https://www.transavia.com";
 	protected StringBuffer verificationErrors = new StringBuffer();
 	protected FirefoxProfile profile = new FirefoxProfile();
